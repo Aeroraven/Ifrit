@@ -1,0 +1,16 @@
+/bin/
+/native_src/IfritNative/.vs/
+*.sln
+/native_src/IfritNative/x64/
+/native_src/IfritNative/x64/Release/
+*.tlog
+*.pdb
+*.iobj
+*.obj
+*.recipe
+*.filters
+*.user
+*.ipdb
+*.vcxproj
+.classpath
+.project
