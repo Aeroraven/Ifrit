@@ -14,3 +14,7 @@
 *.vcxproj
 .classpath
 .project
+*.aps
+*.log
+*.log
+native_src/IfritNative/IfritNative/x64/Release/IfritNative.log
