@@ -19,6 +19,5 @@ public class IfritDemo {
 		System.out.println("YCoord="+conY);
 		System.out.println("==Testing ConsoleFont");
 		IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)2, (short)4, 0, 0, "Arial");
-		
 	}
 }
