@@ -1,4 +1,4 @@
-package com.aeroraven.shapeBuilder;
+package com.aeroraven.ifrit.shapeBuilder;
 
 public interface IfritShapeBuilderInterface {
 	void builderBegin();

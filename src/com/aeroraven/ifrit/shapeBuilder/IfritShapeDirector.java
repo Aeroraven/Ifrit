@@ -1,4 +1,4 @@
-package com.aeroraven.shapeBuilder;
+package com.aeroraven.ifrit.shapeBuilder;
 
 public class IfritShapeDirector {
 	void createImageContainer(IfritShapeBuilderBase builder,String image,int offsetX,int offsetY,int zdepth) throws Exception {
