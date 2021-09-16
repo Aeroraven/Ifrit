@@ -51,4 +51,10 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 			}
 		}
 	}
+	public int getZDepth() {
+		return zdepth;
+	}
+	public void setZDepth(int x) {
+		zdepth=x;
+	}
 }

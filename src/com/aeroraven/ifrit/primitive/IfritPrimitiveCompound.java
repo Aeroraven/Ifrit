@@ -36,4 +36,16 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 			i.translate2d(offset2d);
 		}
 	}
+	public int getZDepth() {
+		return this.zdepth;
+	}
+	public void setZDepth(int x) {
+		this.zdepth=x;
+		for(IfritPrimitiveBase i:child) {
+			i.setZDepth(x);
+		}
+	}
+	public void add(IfritPrimitiveBase x) {
+		child.add(x);
+	}
 }

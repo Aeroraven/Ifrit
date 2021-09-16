@@ -7,5 +7,7 @@ public interface IfritPrimitiveGeometryInterface {
 	public abstract IfritVectord getColor4d();
 	public abstract void setColor4d(IfritVectord color4d);
 	public abstract void translate2d(IfritVectord offset2d);
+	public abstract int getZDepth();
+	public abstract void setZDepth(int x);
 
 }

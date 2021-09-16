@@ -8,6 +8,7 @@ implements IfritPrimitiveEventInterface, IfritPrimitiveGeometryInterface {
 	protected ArrayList<IfritVectord> pointlist;
 	protected String alias;
 	protected Boolean isFinal;
+	protected int zdepth;
 	
 	public abstract IfritVectord getColor3d();
 	public abstract void setColor3d(IfritVectord color3d);
