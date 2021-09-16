@@ -21,7 +21,7 @@ public class IfritMath {
 		for(int i=0;i<n;i++) {
 			double dist=getEculideanDist(src,dst.get(i));
 			if(dist<shortestDist) {
-				dist=shortestDist;
+				shortestDist=dist;
 				bestIdx=i;
 			}
 		}
@@ -34,7 +34,7 @@ public class IfritMath {
 		for(int i=0;i<n;i++) {
 			double dist=getEculideanDist(src,dst.get(i));
 			if(dist<shortestDist) {
-				dist=shortestDist;
+				shortestDist=dist;
 				bestIdx=i;
 			}
 		}

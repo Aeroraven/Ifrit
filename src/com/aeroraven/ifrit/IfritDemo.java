@@ -1,7 +1,7 @@
 package com.aeroraven.ifrit;
 
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.misc.*;
 
@@ -22,7 +22,13 @@ public class IfritDemo {
 		System.out.println("XCoord="+conX);
 		System.out.println("YCoord="+conY);
 		System.out.println("==Testing ConsoleFont");
-		IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)2, (short)4, 0, 0, "Arial");
-		//IfritMisc.getImagePixel("C:\\Users\\huang\\Pictures\\TEST.png");
+		IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)0, (short)1, 0, 0, "Arial");
+		try {
+			IfritMisc.getImagePixel("C:\\Users\\huang\\Pictures\\TEST3.jfif");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Scanner input=new Scanner(System.in);
+		String str=input.next();
 	}
 }
