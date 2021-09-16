@@ -1,5 +1,7 @@
 package com.aeroraven.ifrit;
 
+import java.util.ArrayList;
+
 import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 
 public class IfritDemo {
@@ -19,5 +21,12 @@ public class IfritDemo {
 		System.out.println("YCoord="+conY);
 		System.out.println("==Testing ConsoleFont");
 		IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)2, (short)4, 0, 0, "Arial");
+		Double a=1.1;
+		Double b=1.2;
+		ArrayList<Double> p=new ArrayList<Double>();
+		p.add(a);
+		p.add(b);
+		p.set(1, 9.4);
+		System.out.println(a);
 	}
 }

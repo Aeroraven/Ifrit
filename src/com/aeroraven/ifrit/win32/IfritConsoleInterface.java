@@ -1,5 +1,4 @@
 package com.aeroraven.ifrit.win32;
-import java.io.*;
 
 public class IfritConsoleInterface {
 	static {
