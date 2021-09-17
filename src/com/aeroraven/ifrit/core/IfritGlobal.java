@@ -10,9 +10,9 @@ public final class IfritGlobal {
 	}
 	
 	public int getScreenWidth() {
-		return 300;
+		return 2000;
 	}
 	public int getScreenHeight() {
-		return 300;
+		return 1000;
 	}
 }

@@ -3,40 +3,43 @@ package com.aeroraven.ifrit;
 import com.aeroraven.ifrit.component.*;
 import com.aeroraven.ifrit.scene.*;
 import com.aeroraven.ifrit.shapeBuilder.*;
+import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.natives.*;
 
 public class IfritDemo2 {
 	public static void main(String[] args) {
 		try {
-			//Clear
+			//适配操作系统
 			IfritGraphicsNativeWin32 nat= new IfritGraphicsNativeWin32();
+			IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)0, (short)1, 0, 0, "Arial");
 			nat.cls();
 			
-			//Creating a new scene
+			//创建场景
 			IfritScene scene = new IfritScene();
-			scene.setSceneSize(80, 50);
+			scene.setSceneSize(1000, 400);
 			
-			//Creating a new component
+			//创建组件
 			IfritSprite sprite = new IfritSprite();
 			sprite.setZDepth(0);
 	
-			//Create a shape director
+			//创建图形生成器
 			IfritShapeDirector shapeDirector = new IfritShapeDirector();
 			
-			//Create a image builder
+			//创建图片生成器
 			IfritShapeImageBuilder imageBuilder = new IfritShapeImageBuilder();
 			
-			//Load a image
-			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Desktop\\Test.png",0,0,0);
+			//加载图像（点集）
+			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Pictures\\exc.png",0,0,0);
 			
-			//Add the shape to the component
+			//将生成器结果添加到组件
 			sprite.addPrimitive(imageBuilder.getResult());
 			
-			//Attach the component with the scene
+			//将组件添加到场景中
 			scene.addComponent("helloWorld", sprite);
 				
-			//Do render
+			//渲染场景
 			scene.render();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

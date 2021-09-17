@@ -21,7 +21,7 @@ public class IfritEnumConverter {
 		case CYAN:
 			return new IfritVectord(0.,127.,127.);
 		case GRAY:
-			return new IfritVectord(0.,0.,0.);
+			return new IfritVectord(192.,192.,192.);
 		case LIGHT_RED:
 			return new IfritVectord(255.,0.,0.);
 		case LIGHT_GREEN:
