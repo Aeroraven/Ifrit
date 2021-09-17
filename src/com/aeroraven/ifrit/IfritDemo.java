@@ -7,7 +7,7 @@ import com.aeroraven.ifrit.misc.*;
 
 
 public class IfritDemo {
-	public static void main(String[] args) {
+	public static void old_main(String[] args) {
 		System.out.println("Ifrit Demo is Running");
 		System.out.println("==Testing GetStdHandle");
 		long hStd = IfritConsoleInterface.ICI_GetStdHandle(-11);
@@ -24,7 +24,7 @@ public class IfritDemo {
 		System.out.println("==Testing ConsoleFont");
 		IfritConsoleInterface.ICI_SetConsoleFontInfoEx(0, (short)0, (short)1, 0, 0, "Arial");
 		try {
-			IfritMisc.getImagePixel("C:\\Users\\huang\\Pictures\\TEST3.jfif");
+			//IfritMisc.getImagePixel("C:\\Users\\huang\\Pictures\\TEST3.jfif");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

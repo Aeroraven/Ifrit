@@ -8,4 +8,11 @@ public final class IfritGlobal {
 		}
 		return instance;
 	}
+	
+	public int getScreenWidth() {
+		return 300;
+	}
+	public int getScreenHeight() {
+		return 300;
+	}
 }

@@ -1,5 +1,7 @@
 package com.aeroraven.ifrit.primitive;
 import java.util.ArrayList;
+
+import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
 public final class IfritPrimitiveDot extends IfritPrimitiveBase {
@@ -8,11 +10,15 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 		pointlist = new ArrayList<IfritVectord>();
 		pointlist.add(new IfritVectord(0.0,0.0));
 		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		this.isFinal=true;
+		this.renderMode=IfritRenderMode.DOT;
 	}
 	public IfritPrimitiveDot(double x,double y) {
 		pointlist = new ArrayList<IfritVectord>();
 		pointlist.add(new IfritVectord(x,y));
 		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		this.isFinal=true;
+		this.renderMode=IfritRenderMode.DOT;
 	}
 	
 	public IfritVectord getColor3d() {
@@ -26,7 +32,7 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 		double r=color3d.get(0);
 		double g=color3d.get(1);
 		double b=color3d.get(2);
-		colvec4.reset(r,g,b);
+		colvec4.reset(r,g,b,1.);
 	}
 	public IfritVectord getColor4d() {
 		double r=colvec4.get(0);
@@ -56,5 +62,23 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 	}
 	public void setZDepth(int x) {
 		zdepth=x;
+	}
+	public ArrayList<IfritPrimitiveBase> getDirectChild(){
+		ArrayList<IfritPrimitiveBase> ret=new ArrayList<IfritPrimitiveBase>();
+		ret.add(this);
+		return ret;
+	}
+	public IfritRenderMode getRenderMode() {
+		return renderMode;
+	}
+	public void setRenderMode(IfritRenderMode e) {
+		
+	}
+	public  ArrayList<IfritVectord> getVertices(){
+		ArrayList<IfritVectord> ret = new ArrayList<IfritVectord>();
+		for(IfritVectord i:pointlist) {
+			ret.add(i);
+		}
+		return ret;
 	}
 }

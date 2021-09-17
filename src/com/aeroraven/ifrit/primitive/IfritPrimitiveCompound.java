@@ -1,19 +1,26 @@
 package com.aeroraven.ifrit.primitive;
 
 import java.util.ArrayList;
+
+import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
+import java.util.Collections;
 
 public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 	protected ArrayList<IfritPrimitiveBase> child;
 	
 	public IfritPrimitiveCompound() {
 		child = new ArrayList<IfritPrimitiveBase>();
+		this.isFinal=false;
+		this.renderMode=IfritRenderMode.COMPOUND;
 	}
 	public IfritPrimitiveCompound(IfritPrimitiveBase ...args) {
 		child = new ArrayList<IfritPrimitiveBase>();
 		for(IfritPrimitiveBase i:args) {
 			child.add(i);
 		}
+		this.isFinal=false;
+		this.renderMode=IfritRenderMode.COMPOUND;
 	}
 	public IfritVectord getColor3d() {
 		return new IfritVectord(0.,0.,0.);
@@ -47,5 +54,24 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 	}
 	public void add(IfritPrimitiveBase x) {
 		child.add(x);
+	}
+	public ArrayList<IfritPrimitiveBase> getDirectChild(){
+		ArrayList<IfritPrimitiveBase> ret=new ArrayList<IfritPrimitiveBase>();
+		System.out.println("CALL COMP");
+		for(IfritPrimitiveBase i:child) {
+			ret.add(i);
+		}
+		Collections.sort(ret);
+		System.out.println(ret.size());
+		return ret;
+	}
+	public IfritRenderMode getRenderMode() {
+		return renderMode;
+	}
+	public void setRenderMode(IfritRenderMode e) {
+		
+	}
+	public  ArrayList<IfritVectord> getVertices(){
+		return null;
 	}
 }

@@ -20,7 +20,6 @@ extends IfritShapeBuilderBase{
 		product=new IfritPrimitiveCompound();
 	}
 	public void addFromFile(String arg,int zdepth) throws Exception{
-		IfritGraphicsNativeWin32 nat = new IfritGraphicsNativeWin32();
 		int r,g,b;
 		File file = new File(arg);
 		BufferedImage bi = null;
@@ -34,13 +33,12 @@ extends IfritShapeBuilderBase{
 		int minx = bi.getMinX();
 		int miny = bi.getMinY();
 		for (int j = miny; j < height; j++) {
-			nat.setTextPos((short)0, (short)j);
 			for (int i = minx; i < width; i++) {
 				int pixel = bi.getRGB(i, j); 
 				r = (pixel & 0xff0000) >> 16;
 				g = (pixel & 0xff00) >> 8;
 				b = (pixel & 0xff);
-				IfritPrimitiveBase px = new IfritPrimitiveDot(offsetx+i,offsety+j);
+				IfritPrimitiveBase px = new IfritPrimitiveDot(offsety+j,offsetx+i);
 				px.setColor3d(new IfritVectord((double)r,(double)g,(double)b));
 				product.add(px);
 			}
