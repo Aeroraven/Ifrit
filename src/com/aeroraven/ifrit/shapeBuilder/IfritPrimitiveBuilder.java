@@ -34,6 +34,9 @@ extends IfritShapeBuilderBase{
 			if(xargs[0].equals("line")) {
 				builderMode="line";
 			}
+			if(xargs[0].equals("circle_arc")) {
+				builderMode="circle_arc";
+			}
 		}
 		if(arg.equals("setFillCh")) {
 			fillCh = new String(xargs[0]);
@@ -63,6 +66,15 @@ extends IfritShapeBuilderBase{
 	public void addFromVertices(ArrayList<IfritVectord> arg,int zdepth) {
 		if(builderMode.equals("line")) {
 			IfritPrimitiveLine tmp = new IfritPrimitiveLine(arg.get(0).get(0),arg.get(0).get(1),
+					arg.get(1).get(0),arg.get(1).get(1));
+			tmp.setZDepth(zdepth);
+			tmp.setDisplayChar(fillCh);
+			tmp.setForeColor4d(fgColor);
+			tmp.setBackColor4d(bgColor);
+			product.add(tmp);
+		}
+		if(builderMode.equals("circle_arc")) {
+			IfritPrimitiveCircleArc tmp = new IfritPrimitiveCircleArc(arg.get(0).get(0),arg.get(0).get(1),
 					arg.get(1).get(0),arg.get(1).get(1));
 			tmp.setZDepth(zdepth);
 			tmp.setDisplayChar(fillCh);

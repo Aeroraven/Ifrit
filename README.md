@@ -23,4 +23,6 @@ Coordinate: Switch X-axis and Y-axis
 
 Primitive: Implement line and line rasterizer.
 
-Mechanism: Allow free configuration of pixel characters and colors.
+Primitive: Implement full arc and arc rasterizer.
+
+Mechanism: Allow free configuration of pixel characters and colors

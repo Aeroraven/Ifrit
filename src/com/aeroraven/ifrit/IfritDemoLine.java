@@ -13,34 +13,34 @@ public class IfritDemoLine {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			//适配操作系统
+			//OS Adaption
 			IfritGraphicsNativeWin32 nat= new IfritGraphicsNativeWin32();
 			nat.cls();
 			
-			//创建场景
+			//Create Scene
 			IfritScene scene = new IfritScene();
 			scene.setSceneSize(1000, 400);
 			
-			//创建组件
+			//Create Component
 			IfritSprite sprite = new IfritSprite();
 			sprite.setZDepth(0);
 			
-			//创建图形生成器
+			//Create Primitive Generator
 			IfritShapeDirector shapeDirector = new IfritShapeDirector();
 			IfritPrimitiveBuilder lineBuilder = new IfritPrimitiveBuilder();
 			
 			shapeDirector.setBackColor(lineBuilder, 255, 0, 0);
 			shapeDirector.setForeColor(lineBuilder, 255, 255, 255);
 			shapeDirector.setFillChar(lineBuilder, "  ");
-			shapeDirector.createLine(lineBuilder, new IfritVectord(0.,0.), new IfritVectord(60.,5.), 0);
-			
+			//shapeDirector.createLine(lineBuilder, new IfritVectord(0.,0.), new IfritVectord(60.,5.), 0);
+			shapeDirector.createCircleArc(lineBuilder, new IfritVectord(50.,50.), 20., 0);
 			
 			sprite.addPrimitive(lineBuilder.getResult());
 			
-			//将组件添加到场景中
+			//Component Attachment
 			scene.addComponent("helloWorld", sprite);
 			
-			//渲染场景
+			//Render
 			scene.render();
 			
 		} catch (Exception e) {

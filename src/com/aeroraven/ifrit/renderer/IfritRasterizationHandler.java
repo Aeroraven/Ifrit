@@ -133,6 +133,100 @@ extends IfritRenderHandlerBase{
 			}
 		}
 	}
+	
+	public void arcRasterizer(IfritFrame output,IfritVectord ct,IfritVectord ed,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh) {
+		//Get Top Pixel
+		double radius=IfritMath.getEculideanDist(ct, ed);
+		IfritVectord tp=new IfritVectord(ct.get(0),ct.get(1)+radius);
+		int cx=(int)Math.round(ct.get(0));
+		int cy=(int)Math.round(ct.get(1));
+		int dx=(int)Math.round(tp.get(0));
+		int dy=(int)Math.round(tp.get(1));
+		//Color Approximation
+		IfritColor16 fgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(color4vecfg));
+		IfritColor16 bgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(color4vecbg));
+		
+		//Draw 1/8 arc, Using Bresenham Rasterizer
+		ArrayList<Integer> arcPixelsX = new ArrayList<Integer>();
+		ArrayList<Integer> arcPixelsY = new ArrayList<Integer>();
+		arcPixelsX.add(Integer.valueOf(dx));
+		arcPixelsY.add(Integer.valueOf(dy));
+		int delta=(int)(3.-2.*radius);
+		while(dx-cx<=dy-cy) {
+			if(delta<=0) {
+				dx++;
+				delta+=4*(dx-1-cx)+7;
+			}else {
+				dx++;
+				dy--;
+				delta+=4*((dx-1-cx)-(dy+1-cy))+11;
+			}
+			arcPixelsX.add(Integer.valueOf(dx));
+			arcPixelsY.add(Integer.valueOf(dy));
+		}
+		//Symmetry
+		int pxSize = arcPixelsX.size();
+		for(int i=0;i<pxSize;i++) {
+			int rX=arcPixelsX.get(i)-cx;
+			int rY=arcPixelsY.get(i)-cy;
+			//Px1-RT_top_half
+			if(rX+cx>=0&&rX+cx<output.getFrameW()&&rY+cy>=0&&rY+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(rX+cx, rY+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px2-RT_bottom_half
+			if(rY+cx>=0&&rY+cx<output.getFrameW()&&rX+cy>=0&&rX+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(rY+cx, rX+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px3-RB_top_half
+			if(rY+cx>=0&&rY+cx<output.getFrameW()&&-rX+cy>=0&&-rX+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(rY+cx, -rX+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px4-RB_bottom_half
+			if(rX+cx>=0&&rX+cx<output.getFrameW()&&-rY+cy>=0&&-rY+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(rX+cx, -rY+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px5-LT_top_half
+			if(-rX+cx>=0&&-rX+cx<output.getFrameW()&&rY+cy>=0&&rY+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(-rX+cx, rY+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px6-LT_bottom_half
+			if(-rY+cx>=0&&-rY+cx<output.getFrameW()&&rX+cy>=0&&rX+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(-rY+cx, rX+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px7-LB_top_half
+			if(-rY+cx>=0&&-rY+cx<output.getFrameW()&&-rX+cy>=0&&-rX+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(-rY+cx, -rX+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+			//Px8-LB_bottom_half
+			if(-rX+cx>=0&&-rX+cx<output.getFrameW()&&-rY+cy>=0&&-rY+cy<output.getFrameH()) {
+				IfritPixel px = output.getter(-rX+cx, -rY+cy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+			}
+		}
+	}
 	public void rasterizationFinal(IfritFrame output, ArrayList<IfritPrimitiveBase> shape, IfritRenderMode renderMode) {
 		if(renderMode==IfritRenderMode.DOT) {
 			for(IfritPrimitiveBase i:shape) {
@@ -144,6 +238,11 @@ extends IfritRenderHandlerBase{
 		if(renderMode==IfritRenderMode.LINE) {
 			for(IfritPrimitiveBase i:shape) {
 				lineRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
+			}
+		}
+		if(renderMode==IfritRenderMode.FULL_ARC) {
+			for(IfritPrimitiveBase i:shape) {
+				arcRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
 			}
 		}
 	}
