@@ -41,9 +41,10 @@ extends IfritRenderHandlerBase{
 			IfritColor16 lastBgColor=IfritColor16.UNSET;
 			IfritColor16 lastFgColor=IfritColor16.UNSET;
 			OutputStream out = new BufferedOutputStream ( System.out );
-			for(int j=0;j<flushWidth;j++) {
-				for(int i=0;i<flushHeight;i++) {
+			for(int j=0;j<flushHeight;j++) {
+				for(int i=0;i<flushWidth;i++) {
 					IfritPixel newPx = fr.getter(i, j);
+					//System.out.println("DISP"+i+","+j+","+flushWidth+","+flushHeight);
 					IfritPixel oldPx = frameBuffer.getter(i, j);
 					if(newPx.getFgColor()!=oldPx.getFgColor()||newPx.getBgColor()!=oldPx.getBgColor()||
 						newPx.getDispCh().equals(oldPx.getDispCh())==false) {

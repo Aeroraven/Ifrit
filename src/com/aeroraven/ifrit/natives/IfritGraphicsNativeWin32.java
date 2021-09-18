@@ -32,11 +32,10 @@ extends IfritGraphicsNativeBase{
 		return '0';
 	}
 	public void cls() {
-		/*
 		try {
 			Runtime.getRuntime().exec("cmd /c cls");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 }

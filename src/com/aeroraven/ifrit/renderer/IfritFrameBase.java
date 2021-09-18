@@ -10,8 +10,14 @@ public abstract class IfritFrameBase {
 		frameW=w;
 		frameH=h;
 	}
+	public int getFrameW() {
+		return frameW;
+	}
+	public int getFrameH() {
+		return frameH;
+	}
 	public int getIndex(int x,int y) {
-		return x*frameW+y;
+		return x+y*frameW;
 	}
 	public IfritPixel getter(int x,int y) {
 		return pixels.get(getIndex(x,y));
@@ -24,7 +30,7 @@ public abstract class IfritFrameBase {
 				temp.setBgColor(com.aeroraven.ifrit.constant.IfritColor16.BLACK);
 				temp.setFgColor(com.aeroraven.ifrit.constant.IfritColor16.WHITE);
 				temp.setDispCh("  ");
-				pixels.put(getIndex(i,j), temp);
+				pixels.put(getIndex(j,i), temp);
 			}
 		}
 	}

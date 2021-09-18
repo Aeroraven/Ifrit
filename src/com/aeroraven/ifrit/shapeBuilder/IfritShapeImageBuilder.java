@@ -34,15 +34,16 @@ extends IfritShapeBuilderBase{
 		int height = bi.getHeight();
 		int minx = bi.getMinX();
 		int miny = bi.getMinY();
-		for (int j = miny; j < height; j++) {
-			for (int i = minx; i < width; i++) {
+		for (int i = minx; i < width; i++) {
+			for (int j = miny; j < height; j++) {
 				int pixel = bi.getRGB(i, j); 
 				r = (pixel & 0xff0000) >> 16;
 				g = (pixel & 0xff00) >> 8;
 				b = (pixel & 0xff);
-				IfritPrimitiveBase px = new IfritPrimitiveDot(offsety+j,offsetx+i);
-				px.setForeColor3d(new IfritVectord((double)r,(double)g,(double)b));
-				px.setDisplayChar(new String(fillCh));
+				IfritPrimitiveBase px = new IfritPrimitiveDot(offsetx+i,offsety+j);
+				px.setBackColor3d(new IfritVectord((double)r,(double)g,(double)b));
+				px.setDisplayChar(new String("  "));
+				px.setForeColor3d(new IfritVectord(0.,0.,0.));
 				product.add(px);
 			}
 		}

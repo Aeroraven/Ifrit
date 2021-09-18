@@ -10,14 +10,16 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 	public IfritPrimitiveDot() {
 		pointlist = new ArrayList<IfritVectord>();
 		pointlist.add(new IfritVectord(0.0,0.0));
-		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		colvec4 = new IfritVectord(255.,255.,255.,255.);
+		colvec4bg = new IfritVectord(0.,0.,0.,255.);
 		this.isFinal=true;
 		this.renderMode=IfritRenderMode.DOT;
 	}
 	public IfritPrimitiveDot(double x,double y) {
 		pointlist = new ArrayList<IfritVectord>();
 		pointlist.add(new IfritVectord(x,y));
-		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		colvec4 = new IfritVectord(255.,255.,255.,255.);
+		colvec4bg = new IfritVectord(0.,0.,0.,255.);
 		this.isFinal=true;
 		this.renderMode=IfritRenderMode.DOT;
 	}

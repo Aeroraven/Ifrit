@@ -7,7 +7,7 @@ import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.natives.*;
 
 public class IfritDemo2 {
-	public static void main2(String[] args) {
+	public static void main(String[] args) {
 		try {
 			//适配操作系统
 			IfritGraphicsNativeWin32 nat= new IfritGraphicsNativeWin32();
@@ -20,9 +20,7 @@ public class IfritDemo2 {
 			
 			//创建组件
 			IfritSprite sprite = new IfritSprite();
-			IfritSprite sprite2 = new IfritSprite();
 			sprite.setZDepth(0);
-			sprite2.setZDepth(1);
 			
 			//创建图形生成器
 			IfritShapeDirector shapeDirector = new IfritShapeDirector();
@@ -31,32 +29,15 @@ public class IfritDemo2 {
 			IfritShapeImageBuilder imageBuilder = new IfritShapeImageBuilder();
 			
 			//加载图像（点集）
-			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Desktop\\test.png",0,0,0);
+			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Pictures\\exc.png",0,0,0);
 			//将生成器结果添加到组件
 			sprite.addPrimitive(imageBuilder.getResult());
 			
-			//加载图像（点集）
-			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Desktop\\test.png",4,4,0);
-			//将生成器结果添加到组件
-			sprite2.addPrimitive(imageBuilder.getResult());			
-			
 			//将组件添加到场景中
 			scene.addComponent("helloWorld", sprite);
-			scene.addComponent("test", sprite2);
-			
-			//动画效果
-			while(true) {
-				//移动组件
-				IfritSprite animateSprite= (IfritSprite)scene.getComponent("test");
-				animateSprite.translate2d(2, 2);
-				
-				//渲染场景
-				scene.render();
-				
-				//延迟
-				Thread.sleep(50);
-			}
-			
+
+			//渲染场景
+			scene.render();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
