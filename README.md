@@ -13,4 +13,6 @@ Performance Optimization: Reduce redundant console stream flush operations.
 
 == 2021.9.18 ==
 
-Sprite: Subordinate primitive can be moved.
+Sprite: Subordinate primitives can be moved.
+
+Renderer: Reduce redundant flush operations.

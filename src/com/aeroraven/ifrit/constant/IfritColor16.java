@@ -17,5 +17,6 @@ public enum IfritColor16 {
 	LIGHT_CYAN,
 	LIGHT_MAGENTA,
 	LIGHT_YELLOW,
-	WHITE
+	WHITE,
+	UNSET
 }

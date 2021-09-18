@@ -17,7 +17,6 @@ public final class IfritDisplayHandler
 extends IfritRenderHandlerBase{
 	private static IfritDisplayHandler instance;
 	private IfritFrame frameBuffer;
-	
 	public static IfritDisplayHandler getInst() {
 		if(instance == null) {
 			instance = new IfritDisplayHandler();
@@ -39,15 +38,15 @@ extends IfritRenderHandlerBase{
 			int flushHeight = Math.min(fr.frameH, frameBuffer.frameH);
 			String outputBuffer = "";
 			boolean continuousDisplaying = false;
-			IfritColor16 lastBgColor=IfritColor16.RED;
-			IfritColor16 lastFgColor=IfritColor16.RED;
+			IfritColor16 lastBgColor=IfritColor16.UNSET;
+			IfritColor16 lastFgColor=IfritColor16.UNSET;
 			OutputStream out = new BufferedOutputStream ( System.out );
 			for(int i=0;i<flushHeight;i++) {
 				for(int j=0;j<flushWidth;j++) {
 					IfritPixel newPx = fr.getter(i, j);
 					IfritPixel oldPx = frameBuffer.getter(i, j);
 					if(newPx.getFgColor()!=oldPx.getFgColor()||newPx.getBgColor()!=oldPx.getBgColor()||
-						newPx.getDispCh()!=oldPx.getDispCh()) {
+						newPx.getDispCh().equals(oldPx.getDispCh())==false) {
 						if(continuousDisplaying && (lastBgColor!=newPx.getBgColor() || lastFgColor!=newPx.getFgColor())) {
 							out.write(outputBuffer.getBytes());
 							out.flush();
@@ -68,20 +67,25 @@ extends IfritRenderHandlerBase{
 						oldPx.setBgColor(newPx.getBgColor());
 						oldPx.setFgColor(newPx.getFgColor());
 					}else {
-						out.write(outputBuffer.getBytes());
-						out.flush();
-						outputBuffer="";
-						continuousDisplaying=false;
+						if(!outputBuffer.equals("")){
+							out.write(outputBuffer.getBytes());
+							out.flush();
+							outputBuffer="";
+							continuousDisplaying=false;
+						}
 					}
 				}
-				out.write(outputBuffer.getBytes());
-				out.flush();
-				outputBuffer="";
-				continuousDisplaying=false;
+				lastBgColor=IfritColor16.UNSET;
+				lastFgColor=IfritColor16.UNSET;
+				if(!outputBuffer.equals("")){
+					out.write(outputBuffer.getBytes());
+					out.flush();
+					outputBuffer="";
+					continuousDisplaying=false;
+				}
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

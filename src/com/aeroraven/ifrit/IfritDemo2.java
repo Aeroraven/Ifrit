@@ -31,7 +31,7 @@ public class IfritDemo2 {
 			IfritShapeImageBuilder imageBuilder = new IfritShapeImageBuilder();
 			
 			//加载图像（点集）
-			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Pictures\\exc.png",0,0,0);
+			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Desktop\\test.png",0,0,0);
 			//将生成器结果添加到组件
 			sprite.addPrimitive(imageBuilder.getResult());
 			
@@ -48,13 +48,13 @@ public class IfritDemo2 {
 			while(true) {
 				//移动组件
 				IfritSprite animateSprite= (IfritSprite)scene.getComponent("test");
-				animateSprite.translate2d(10, 10);
+				animateSprite.translate2d(2, 2);
 				
 				//渲染场景
 				scene.render();
 				
 				//延迟
-				//Thread.sleep(50);
+				Thread.sleep(50);
 			}
 			
 			
