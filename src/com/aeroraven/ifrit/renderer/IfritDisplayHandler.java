@@ -39,8 +39,8 @@ extends IfritRenderHandlerBase{
 			int flushHeight = Math.min(fr.frameH, frameBuffer.frameH);
 			String outputBuffer = "";
 			boolean continuousDisplaying = false;
-			IfritColor16 lastBgColor=IfritColor16.BLACK;
-			IfritColor16 lastFgColor=IfritColor16.WHITE;
+			IfritColor16 lastBgColor=IfritColor16.RED;
+			IfritColor16 lastFgColor=IfritColor16.RED;
 			OutputStream out = new BufferedOutputStream ( System.out );
 			for(int i=0;i<flushHeight;i++) {
 				for(int j=0;j<flushWidth;j++) {
@@ -48,7 +48,6 @@ extends IfritRenderHandlerBase{
 					IfritPixel oldPx = frameBuffer.getter(i, j);
 					if(newPx.getFgColor()!=oldPx.getFgColor()||newPx.getBgColor()!=oldPx.getBgColor()||
 						newPx.getDispCh()!=oldPx.getDispCh()) {
-						//if(true) {
 						if(continuousDisplaying && (lastBgColor!=newPx.getBgColor() || lastFgColor!=newPx.getFgColor())) {
 							out.write(outputBuffer.getBytes());
 							out.flush();

@@ -57,12 +57,10 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 	}
 	public ArrayList<IfritPrimitiveBase> getDirectChild(){
 		ArrayList<IfritPrimitiveBase> ret=new ArrayList<IfritPrimitiveBase>();
-		System.out.println("CALL COMP");
 		for(IfritPrimitiveBase i:child) {
 			ret.add(i);
 		}
 		Collections.sort(ret);
-		System.out.println(ret.size());
 		return ret;
 	}
 	public IfritRenderMode getRenderMode() {
@@ -73,5 +71,10 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 	}
 	public  ArrayList<IfritVectord> getVertices(){
 		return null;
+	}
+	public void translate2d(double x,double y) {
+		for(IfritPrimitiveBase i:child) {
+			i.translate2d(x, y);
+		}
 	}
 }

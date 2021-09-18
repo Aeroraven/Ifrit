@@ -11,3 +11,6 @@ Supports for java console applications. <s>Render graphics on console?</s>
 
 Performance Optimization: Reduce redundant console stream flush operations.
 
+== 2021.9.18 ==
+
+Sprite: Subordinate primitive can be moved.

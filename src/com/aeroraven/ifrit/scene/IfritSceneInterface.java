@@ -10,5 +10,6 @@ public interface IfritSceneInterface {
 	public abstract IfritVectord getSceneSize();
 	public abstract ArrayList<IfritComponentBase> getSortedComponents();
 	public abstract void addComponent(String alias,IfritComponentBase component);
+	public abstract IfritComponentBase getComponent(String alias);
 	public abstract void removeComponent(String alias);
 }

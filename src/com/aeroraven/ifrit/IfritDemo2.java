@@ -20,8 +20,10 @@ public class IfritDemo2 {
 			
 			//创建组件
 			IfritSprite sprite = new IfritSprite();
+			IfritSprite sprite2 = new IfritSprite();
 			sprite.setZDepth(0);
-	
+			sprite2.setZDepth(1);
+			
 			//创建图形生成器
 			IfritShapeDirector shapeDirector = new IfritShapeDirector();
 			
@@ -30,15 +32,32 @@ public class IfritDemo2 {
 			
 			//加载图像（点集）
 			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Pictures\\exc.png",0,0,0);
-			
 			//将生成器结果添加到组件
 			sprite.addPrimitive(imageBuilder.getResult());
 			
+			//加载图像（点集）
+			shapeDirector.createImageContainer(imageBuilder, "C:\\Users\\huang\\Desktop\\test.png",4,4,0);
+			//将生成器结果添加到组件
+			sprite2.addPrimitive(imageBuilder.getResult());			
+			
 			//将组件添加到场景中
 			scene.addComponent("helloWorld", sprite);
+			scene.addComponent("test", sprite2);
+			
+			//动画效果
+			while(true) {
+				//移动组件
+				IfritSprite animateSprite= (IfritSprite)scene.getComponent("test");
+				animateSprite.translate2d(10, 10);
 				
-			//渲染场景
-			scene.render();
+				//渲染场景
+				scene.render();
+				
+				//延迟
+				//Thread.sleep(50);
+			}
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

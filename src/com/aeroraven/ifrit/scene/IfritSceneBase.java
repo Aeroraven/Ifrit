@@ -20,6 +20,9 @@ implements IfritSceneInterface{
 	public void addComponent(String alias,IfritComponentBase component) {
 		comList.put(alias, component);
 	}
+	public IfritComponentBase getComponent(String alias) {
+		return comList.get(alias);
+	}
 	public void removeComponent(String alias) {
 		comList.remove(alias);
 	}

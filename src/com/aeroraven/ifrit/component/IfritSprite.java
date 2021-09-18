@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 
-public class IfritSprite extends IfritComponentBase {
+public class IfritSprite 
+extends IfritComponentBase
+implements IfritSpriteNotifyInterface{
 	private ArrayList<IfritPrimitiveBase> shapeList;
 	public IfritSprite() {
 		shapeList = new ArrayList<IfritPrimitiveBase>();
@@ -21,5 +23,12 @@ public class IfritSprite extends IfritComponentBase {
 	@Override
 	public void addPrimitive(IfritPrimitiveBase x) {
 		shapeList.add(x);
+	}
+	
+	@Override
+	public void translate2d(double x, double y) {
+		for(IfritPrimitiveBase i:shapeList) {
+			i.translate2d(x, y);
+		}
 	}
 }

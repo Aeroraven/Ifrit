@@ -81,4 +81,12 @@ public final class IfritPrimitiveDot extends IfritPrimitiveBase {
 		}
 		return ret;
 	}
+	
+	//Event Handlers
+	public void translate2d(double x,double y) {
+		for(IfritVectord i:pointlist) {
+			i.set(0, i.get(0)+x);
+			i.set(1, i.get(1)+y);
+		}
+	}
 }
