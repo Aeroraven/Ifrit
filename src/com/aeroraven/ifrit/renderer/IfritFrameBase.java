@@ -23,7 +23,7 @@ public abstract class IfritFrameBase {
 				IfritPixel temp = new IfritPixel();
 				temp.setBgColor(com.aeroraven.ifrit.constant.IfritColor16.BLACK);
 				temp.setFgColor(com.aeroraven.ifrit.constant.IfritColor16.WHITE);
-				temp.setDispCh(" ");
+				temp.setDispCh("  ");
 				pixels.put(getIndex(i,j), temp);
 			}
 		}

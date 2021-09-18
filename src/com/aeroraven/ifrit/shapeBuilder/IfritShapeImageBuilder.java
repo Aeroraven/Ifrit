@@ -7,10 +7,12 @@ import com.aeroraven.ifrit.core.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.*;
 
 public class IfritShapeImageBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;
+	String fillCh="  ";
 	double offsetx=0;
 	double offsety=0;
 	public IfritShapeImageBuilder() {
@@ -39,7 +41,8 @@ extends IfritShapeBuilderBase{
 				g = (pixel & 0xff00) >> 8;
 				b = (pixel & 0xff);
 				IfritPrimitiveBase px = new IfritPrimitiveDot(offsety+j,offsetx+i);
-				px.setColor3d(new IfritVectord((double)r,(double)g,(double)b));
+				px.setForeColor3d(new IfritVectord((double)r,(double)g,(double)b));
+				px.setDisplayChar(new String(fillCh));
 				product.add(px);
 			}
 		}
@@ -48,7 +51,9 @@ extends IfritShapeBuilderBase{
 		
 	}
 	public void setConfigStr(String arg,String ...xargs) {
-		
+		if(arg.equals("setFillCh")) {
+			fillCh = new String(xargs[0]);
+		}
 	}
 	public void setConfig(String arg,Integer ...xargs) {
 		if(arg=="setx") {
@@ -60,5 +65,8 @@ extends IfritShapeBuilderBase{
 	}
 	public IfritPrimitiveCompound getResult() {
 		return product;
+	}
+	public void addFromVertices(ArrayList<IfritVectord> arg,int zdepth) {
+		
 	}
 }

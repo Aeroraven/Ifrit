@@ -7,7 +7,7 @@ import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.natives.*;
 
 public class IfritDemo2 {
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		try {
 			//ÊÊÅä²Ù×÷ÏµÍ³
 			IfritGraphicsNativeWin32 nat= new IfritGraphicsNativeWin32();
@@ -56,8 +56,6 @@ public class IfritDemo2 {
 				//ÑÓ³Ù
 				Thread.sleep(50);
 			}
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

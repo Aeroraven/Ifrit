@@ -41,8 +41,8 @@ extends IfritRenderHandlerBase{
 			IfritColor16 lastBgColor=IfritColor16.UNSET;
 			IfritColor16 lastFgColor=IfritColor16.UNSET;
 			OutputStream out = new BufferedOutputStream ( System.out );
-			for(int i=0;i<flushHeight;i++) {
-				for(int j=0;j<flushWidth;j++) {
+			for(int j=0;j<flushWidth;j++) {
+				for(int i=0;i<flushHeight;i++) {
 					IfritPixel newPx = fr.getter(i, j);
 					IfritPixel oldPx = frameBuffer.getter(i, j);
 					if(newPx.getFgColor()!=oldPx.getFgColor()||newPx.getBgColor()!=oldPx.getBgColor()||
@@ -56,11 +56,10 @@ extends IfritRenderHandlerBase{
 							lastFgColor=newPx.getFgColor();
 						}
 						if(continuousDisplaying==false) {
-							cgapi.setTextPos((short)(j*2), (short)i);
+							cgapi.setTextPos((short)(i*2), (short)j);
 							cgapi.setTextColor(newPx.getBgColor(),newPx.getFgColor());
 							continuousDisplaying=true;
 						}
-						outputBuffer+=newPx.getDispCh();
 						outputBuffer+=newPx.getDispCh();
 						//Update frame buffer
 						oldPx.setDispCh(new String(newPx.getDispCh()));
@@ -84,8 +83,12 @@ extends IfritRenderHandlerBase{
 					continuousDisplaying=false;
 				}
 			}
+			cgapi.setTextColor(IfritColor16.BLACK,IfritColor16.WHITE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	//Recover Settings
+	
 }

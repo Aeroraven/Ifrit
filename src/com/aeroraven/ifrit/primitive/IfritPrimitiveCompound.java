@@ -22,22 +22,40 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 		this.isFinal=false;
 		this.renderMode=IfritRenderMode.COMPOUND;
 	}
-	public IfritVectord getColor3d() {
+	public IfritVectord getForeColor3d() {
 		return new IfritVectord(0.,0.,0.);
 	}
-	public void setColor3d(IfritVectord color3d) {
+	public void setForeColor3d(IfritVectord color3d) {
 		for(IfritPrimitiveBase i:child) {
-			i.setColor3d(color3d);
+			i.setForeColor3d(color3d);
 		}
 	}
-	public IfritVectord getColor4d() {
+	public IfritVectord getForeColor4d() {
 		return new IfritVectord(0.,0.,0.);
 	}
-	public void setColor4d(IfritVectord color4d) {
+	public void setForeColor4d(IfritVectord color4d) {
 		for(IfritPrimitiveBase i:child) {
-			i.setColor4d(color4d);
+			i.setForeColor4d(color4d);
 		}
 	}
+	
+	public IfritVectord getBackColor3d() {
+		return new IfritVectord(0.,0.,0.);
+	}
+	public void setBackColor3d(IfritVectord color3d) {
+		for(IfritPrimitiveBase i:child) {
+			i.setBackColor3d(color3d);
+		}
+	}
+	public IfritVectord getBackColor4d() {
+		return new IfritVectord(0.,0.,0.);
+	}
+	public void setBackColor4d(IfritVectord color4d) {
+		for(IfritPrimitiveBase i:child) {
+			i.setBackColor4d(color4d);
+		}
+	}
+	
 	public void translate2d(IfritVectord offset2d) {
 		for(IfritPrimitiveBase i:child) {
 			i.translate2d(offset2d);
@@ -76,5 +94,14 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 		for(IfritPrimitiveBase i:child) {
 			i.translate2d(x, y);
 		}
+	}
+	public void setDisplayChar(String e) {
+		dispChar = new String(e);
+		for(IfritPrimitiveBase i:child) {
+			i.setDisplayChar(e);
+		}
+	}
+	public String getDisplayChar() {
+		return this.dispChar;
 	}
 }

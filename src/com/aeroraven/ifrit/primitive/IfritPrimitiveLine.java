@@ -4,22 +4,29 @@ import java.util.ArrayList;
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
-public final class IfritPrimitiveDot extends IfritPrimitiveBase {
+public final class IfritPrimitiveLine extends IfritPrimitiveBase {
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
-	public IfritPrimitiveDot() {
+	
+	public IfritPrimitiveLine() {
 		pointlist = new ArrayList<IfritVectord>();
 		pointlist.add(new IfritVectord(0.0,0.0));
-		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		pointlist.add(new IfritVectord(0.0,0.0));
+		colvec4 = new IfritVectord(255.,255.,255.,255.);
+		colvec4bg = new IfritVectord(0.,0.,0.,255.);
+		
 		this.isFinal=true;
-		this.renderMode=IfritRenderMode.DOT;
+		this.renderMode=IfritRenderMode.LINE;
 	}
-	public IfritPrimitiveDot(double x,double y) {
+	public IfritPrimitiveLine(double x1,double y1,double x2,double y2) {
 		pointlist = new ArrayList<IfritVectord>();
-		pointlist.add(new IfritVectord(x,y));
-		colvec4 = new IfritVectord(1.,1.,1.,1.);
+		pointlist.add(new IfritVectord(x1,y1));
+		pointlist.add(new IfritVectord(x2,y2));
+		colvec4 = new IfritVectord(255.,255.,255.,255.);
+		colvec4bg = new IfritVectord(0.,0.,0.,255.);
+		
 		this.isFinal=true;
-		this.renderMode=IfritRenderMode.DOT;
+		this.renderMode=IfritRenderMode.LINE;
 	}
 	
 	public IfritVectord getForeColor3d() {

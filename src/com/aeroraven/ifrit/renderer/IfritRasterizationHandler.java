@@ -9,7 +9,7 @@ import com.aeroraven.ifrit.misc.IfritMath;
 
 public class IfritRasterizationHandler
 extends IfritRenderHandlerBase{
-	public void dotRasterizer(IfritFrame output,IfritVectord pt,IfritVectord colvec4) {
+	public void dotRasterizer(IfritFrame output,IfritVectord pt,IfritVectord colvec4,IfritVectord colvec4bg) {
 		int ptX = (int)(double)(pt.get(0));
 		int ptY = (int)(double)(pt.get(1));
 		ArrayList<IfritVectord> distpt = new ArrayList<IfritVectord>();
@@ -34,19 +34,77 @@ extends IfritRenderHandlerBase{
 		if(ptRY>=output.frameW) {
 			return;
 		}
-
 		output.getter(ptRX, ptRY).setDispCh(" ");
-		IfritColor16 bgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(colvec4));
+		IfritColor16 bgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(colvec4bg));
+		IfritColor16 fgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(colvec4));
 		output.getter(ptRX, ptRY).setBgColor(bgc);
-		output.getter(ptRX, ptRY).setFgColor(IfritColor16.WHITE);
-		//System.out.println("PT"+ptRX+","+ptRY+" "+bgc+"/"+pt.get(0)+"#"+pt.get(1));
+		output.getter(ptRX, ptRY).setFgColor(fgc);
+	}
+	public void lineRasterizer(IfritFrame output, IfritVectord st,IfritVectord ed, IfritVectord colvec4, IfritVectord colvec4bg,String dispCh) {
+		//Compare slope
+		double deltaX = Math.abs (st.get(0)-ed.get(0));
+		double deltaY = Math.abs(st.get(1)-ed.get(1));
+		boolean scanYAxis = (deltaY>deltaX);
+		boolean descending = false;
+		IfritColor16 fgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(colvec4));
+		IfritColor16 bgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(colvec4bg));
+		//Switch order
+		IfritVectord rSt,rEd;
+		if(scanYAxis) {
+			if(ed.get(1)>st.get(1)) {
+				rSt=st;
+				rEd=ed;
+			}else {
+				rSt=ed;
+				rEd=st;
+			}
+			if(rEd.get(0)-rSt.get(0)<0) {
+				descending=true;
+			}
+		}else {
+			if(ed.get(0)>st.get(0)) {
+				rSt=st;
+				rEd=ed;
+			}else {
+				rSt=ed;
+				rEd=st;
+			}
+			if(rEd.get(1)-rSt.get(1)<0) {
+				descending=true;
+			}
+		}
+		//Bresenham Line Rasterization
+		if(!scanYAxis) {
+			//Starting
+			int dx=(int)Math.round(rSt.get(0)),dy=(int)Math.round(rSt.get(0));
+			double slope = (rEd.get(1)-rSt.get(1))/(rEd.get(0)-rSt.get(0));
+			double e=-0.5;
+			for(int i=dx;i<(int)Math.round(rEd.get(0));i++) {
+				IfritPixel px=output.getter(dx, dy);
+				px.setBgColor(bgc);
+				px.setFgColor(fgc);
+				px.setDispCh(dispCh);
+				dx++;
+				e+=slope;
+				if(e>=0) {
+					dy++;
+					e=e-1;
+				}
+			}
+			
+		}
 	}
 	public void rasterizationFinal(IfritFrame output, ArrayList<IfritPrimitiveBase> shape, IfritRenderMode renderMode) {
 		if(renderMode==IfritRenderMode.DOT) {
 			for(IfritPrimitiveBase i:shape) {
 				for(IfritVectord j:i.getVertices()) {
-					dotRasterizer(output,j,i.getColor4d());
+					dotRasterizer(output,j,i.getForeColor4d(),i.getBackColor4d());
 				}
+			}
+		}
+		if(renderMode==IfritRenderMode.LINE) {
+			for(IfritPrimitiveBase i:shape) {
+				lineRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
 			}
 		}
 	}
