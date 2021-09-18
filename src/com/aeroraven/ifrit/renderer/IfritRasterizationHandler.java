@@ -76,7 +76,7 @@ extends IfritRenderHandlerBase{
 		//Bresenham Line Rasterizer
 		if(!scanYAxis) {
 			//Starting
-			int dx=(int)Math.round(rSt.get(0)),dy=(int)Math.round(rSt.get(0));
+			int dx=(int)Math.round(rSt.get(0)),dy=(int)Math.round(rSt.get(1));
 			double slope = (rEd.get(1)-rSt.get(1))/(rEd.get(0)-rSt.get(0));
 			double e=-0.5;
 			if(descending) {
@@ -104,7 +104,7 @@ extends IfritRenderHandlerBase{
 				}
 			}
 		}else {
-			int dx=(int)Math.round(rSt.get(1)),dy=(int)Math.round(rSt.get(1));
+			int dx=(int)Math.round(rSt.get(1)),dy=(int)Math.round(rSt.get(0));
 			double slope = (rEd.get(0)-rSt.get(0))/(rEd.get(1)-rSt.get(1));
 			double e=-0.5;
 			if(descending) {

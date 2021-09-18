@@ -32,7 +32,7 @@ public class IfritDemoLine {
 			shapeDirector.setBackColor(lineBuilder, 255, 0, 0);
 			shapeDirector.setForeColor(lineBuilder, 255, 255, 255);
 			shapeDirector.setFillChar(lineBuilder, "  ");
-			shapeDirector.createLine(lineBuilder, new IfritVectord(43.,4.), new IfritVectord(12.,25.), 0);
+			shapeDirector.createLine(lineBuilder, new IfritVectord(0.,0.), new IfritVectord(60.,5.), 0);
 			
 			
 			sprite.addPrimitive(lineBuilder.getResult());
