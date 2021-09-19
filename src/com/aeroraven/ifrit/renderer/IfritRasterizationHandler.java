@@ -84,7 +84,7 @@ extends IfritRenderHandlerBase{
 			if(descending) {
 				e=0.5;
 			}
-			for(int i=dx;i<(int)Math.round(rEd.get(0));i++) {
+			for(int i=dx;i<=(int)Math.round(rEd.get(0));i++) {
 				if((dx<output.getFrameW())&&(dx>=0)&&(dy<output.getFrameH())&&(dy>=0)) {
 					IfritPixel px=output.getter(dx, dy);
 					px.setBgColor(bgc);
@@ -112,7 +112,7 @@ extends IfritRenderHandlerBase{
 			if(descending) {
 				e=0.5;
 			}
-			for(int i=dx;i<(int)Math.round(rEd.get(1));i++) {
+			for(int i=dx;i<=(int)Math.round(rEd.get(1));i++) {
 				if((dx<output.getFrameH())&&(dx>=0)&&(dy<output.getFrameW())&&(dy>=0)) {
 					IfritPixel px=output.getter(dy, dx);
 					px.setBgColor(bgc);
@@ -333,6 +333,11 @@ extends IfritRenderHandlerBase{
 			lineRasterizer(output,vx.get(i),vx.get((i+1)%vx.size()),color4vecfg,color4vecbg,dispCh);
 		}
 	}
+	public void linestripRasterizer(IfritFrame output,ArrayList<IfritVectord> vx,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh) {
+		for(int i=0;i<vx.size()-1;i++) {
+			lineRasterizer(output,vx.get(i),vx.get((i+1)%vx.size()),color4vecfg,color4vecbg,dispCh);
+		}
+	}
 	public void rasterizationFinal(IfritFrame output, ArrayList<IfritPrimitiveBase> shape, IfritRenderMode renderMode) {
 		if(renderMode==IfritRenderMode.DOT) {
 			for(IfritPrimitiveBase i:shape) {
@@ -366,10 +371,18 @@ extends IfritRenderHandlerBase{
 				lineloopRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
 			}
 		}
+		if(renderMode==IfritRenderMode.POLYGON) {
+			for(IfritPrimitiveBase i:shape) {
+				ArrayList<IfritVectord> vx = i.getVertices();
+				polygonRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
+				lineloopRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
+			}
+		}
 	}
 	public void rasterizationWrapper(IfritFrame output,IfritPrimitiveBase shape) {
 		if(!shape.isFinal()) {
 			ArrayList<IfritPrimitiveBase> cr = shape.getDirectChild();
+			Collections.sort(cr);
 			for(IfritPrimitiveBase i:cr) {
 				rasterizationWrapper(output, i);
 			}

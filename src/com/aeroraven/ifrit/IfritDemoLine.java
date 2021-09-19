@@ -38,8 +38,13 @@ public class IfritDemoLine {
 					IfritVectord.val(0.,0.) ,
 					IfritVectord.val(50.,40.) ,
 					IfritVectord.val(75.,20.) , 0);
-			
 			sprite.addPrimitive(lineBuilder.getResult());
+			
+			shapeDirector.setBackColor(lineBuilder, 0, 255, 0);
+			
+			shapeDirector.createSolidRectangle(lineBuilder,-1,IfritVectord.val(3.,3.),6,6);
+			sprite.addPrimitive(lineBuilder.getResult());
+			
 			
 			//Component Attachment
 			scene.addComponent("helloWorld", sprite);

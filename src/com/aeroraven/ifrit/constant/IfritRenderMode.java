@@ -7,4 +7,6 @@ public enum IfritRenderMode {
 	TRIANGLE,
 	FULL_ARC,
 	ROUND,
+	POLYGON,
+	PARAM_EQUATION_CURVE
 }

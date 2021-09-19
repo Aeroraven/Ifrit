@@ -15,6 +15,7 @@ extends IfritShapeBuilderBase{
 	String builderMode;
 	String fillCh="  ";
 	IfritVectord bgColor,fgColor;
+	boolean syncWithZdepth = true;
 	public IfritPrimitiveBuilder() {
 		builderBegin();
 		bgColor  = new IfritVectord(0.,0.,0.,255.);
@@ -43,6 +44,12 @@ extends IfritShapeBuilderBase{
 			if(xargs[0].equals("circle_filled")) {
 				builderMode="circle_filled";
 			}
+			if(xargs[0].equals("lineloop")) {
+				builderMode="lineloop";
+			}
+			if(xargs[0].equals("polygon")) {
+				builderMode="polygon";
+			}
 		}
 		if(arg.equals("setFillCh")) {
 			fillCh = new String(xargs[0]);
@@ -70,6 +77,9 @@ extends IfritShapeBuilderBase{
 		return product;
 	}
 	public void addFromVertices(ArrayList<IfritVectord> arg,int zdepth) {
+		if(syncWithZdepth) {
+			product.setZDepth(zdepth);
+		}
 		if(builderMode.equals("line")) {
 			IfritPrimitiveLine tmp = new IfritPrimitiveLine(arg.get(0).get(0),arg.get(0).get(1),
 					arg.get(1).get(0),arg.get(1).get(1));
@@ -104,6 +114,33 @@ extends IfritShapeBuilderBase{
 			tmp.setDisplayChar(fillCh);
 			tmp.setForeColor4d(fgColor);
 			tmp.setBackColor4d(bgColor);
+			product.add(tmp);
+		}
+		if(builderMode.equals("polygon")) {
+			IfritPrimitivePolygon tmp = new IfritPrimitivePolygon();
+			tmp.setZDepth(zdepth);
+			tmp.setDisplayChar(fillCh);
+			tmp.setForeColor4d(fgColor);
+			tmp.setBackColor4d(bgColor);
+			for(int i=0;i<arg.size();i++) {
+				IfritVectord st=arg.get(i).getDuplicate();
+				tmp.addVertex(st);
+			}
+			product.add(tmp);
+		}
+		if(builderMode.equals("lineloop")) {
+			IfritPrimitiveCompound tmp = new IfritPrimitiveCompound();
+			tmp.setZDepth(zdepth);
+			for(int i=0;i<arg.size();i++) {
+				IfritVectord st=arg.get(i).getDuplicate();
+				IfritVectord ed=arg.get((i+1)%arg.size()).getDuplicate();
+				IfritPrimitiveLine subtmp = new IfritPrimitiveLine(st.get(0),st.get(1),ed.get(0),ed.get(1));
+				subtmp.setZDepth(zdepth);
+				subtmp.setDisplayChar(fillCh);
+				subtmp.setForeColor4d(fgColor);
+				subtmp.setBackColor4d(bgColor);
+				tmp.add(subtmp);
+			}
 			product.add(tmp);
 		}
 	}
