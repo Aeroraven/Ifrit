@@ -44,7 +44,6 @@ extends IfritRenderHandlerBase{
 			for(int j=0;j<flushHeight;j++) {
 				for(int i=0;i<flushWidth;i++) {
 					IfritPixel newPx = fr.getter(i, j);
-					//System.out.println("DISP"+i+","+j+","+flushWidth+","+flushHeight);
 					IfritPixel oldPx = frameBuffer.getter(i, j);
 					if(newPx.getFgColor()!=oldPx.getFgColor()||newPx.getBgColor()!=oldPx.getBgColor()||
 						newPx.getDispCh().equals(oldPx.getDispCh())==false) {

@@ -5,5 +5,6 @@ public enum IfritRenderMode {
 	DOT,
 	LINE,
 	TRIANGLE,
-	FULL_ARC
+	FULL_ARC,
+	ROUND,
 }

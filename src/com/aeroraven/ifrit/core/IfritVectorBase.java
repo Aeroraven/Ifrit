@@ -9,6 +9,9 @@ abstract public class  IfritVectorBase<T> {
 			vector.add(i);
 		}
 	}
+	protected void add(T arg) {
+		vector.add(arg);
+	}
 	public void set(int idx,T val) {
 		vector.set(idx, val);
 	}

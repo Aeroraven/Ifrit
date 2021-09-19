@@ -36,4 +36,13 @@ public class IfritShapeDirector {
 		insSet.add(new IfritVectord(ct.get(0),ct.get(1)-radius));
 		builder.addFromVertices(insSet, zdepth);
 	}
+	
+	public void createRound(IfritShapeBuilderBase builder,IfritVectord ct,double radius,int zdepth) {
+		builder.builderBegin();
+		builder.setConfigStr("setmode", "circle_filled");
+		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
+		insSet.add(ct);
+		insSet.add(new IfritVectord(ct.get(0),ct.get(1)-radius));
+		builder.addFromVertices(insSet, zdepth);
+	}
 }

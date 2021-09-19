@@ -1,6 +1,8 @@
 package com.aeroraven.ifrit.renderer;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.component.IfritComponentBase;
 import com.aeroraven.ifrit.constant.*;
@@ -134,7 +136,7 @@ extends IfritRenderHandlerBase{
 		}
 	}
 	
-	public void arcRasterizer(IfritFrame output,IfritVectord ct,IfritVectord ed,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh) {
+	public void arcRasterizer(IfritFrame output,IfritVectord ct,IfritVectord ed,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh,boolean doFilling) {
 		//Get Top Pixel
 		double radius=IfritMath.getEculideanDist(ct, ed);
 		IfritVectord tp=new IfritVectord(ct.get(0),ct.get(1)+radius);
@@ -152,6 +154,12 @@ extends IfritRenderHandlerBase{
 		arcPixelsX.add(Integer.valueOf(dx));
 		arcPixelsY.add(Integer.valueOf(dy));
 		int delta=(int)(3.-2.*radius);
+		if(doFilling) {
+			for(int j=cy+(dx-cx);j<=dy;j++) {
+				arcPixelsX.add(Integer.valueOf(dx));
+				arcPixelsY.add(Integer.valueOf(j));
+			}
+		}
 		while(dx-cx<=dy-cy) {
 			if(delta<=0) {
 				dx++;
@@ -161,8 +169,16 @@ extends IfritRenderHandlerBase{
 				dy--;
 				delta+=4*((dx-1-cx)-(dy+1-cy))+11;
 			}
-			arcPixelsX.add(Integer.valueOf(dx));
-			arcPixelsY.add(Integer.valueOf(dy));
+			if(!doFilling) {
+				arcPixelsX.add(Integer.valueOf(dx));
+				arcPixelsY.add(Integer.valueOf(dy));
+			}else {
+				for(int j=cy+(dx-cx);j<=dy;j++) {
+					arcPixelsX.add(Integer.valueOf(dx));
+					arcPixelsY.add(Integer.valueOf(j));
+				}
+			}
+			
 		}
 		//Symmetry
 		int pxSize = arcPixelsX.size();
@@ -227,6 +243,54 @@ extends IfritRenderHandlerBase{
 			}
 		}
 	}
+	public void polygonRasterizer(IfritFrame output,ArrayList<IfritVectord> vx,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh) {
+		//Counting Vertices
+		int minY=90000;
+		int maxY=-1;
+		int n=vx.size();
+		ArrayList<Integer> vertexCounter = new ArrayList<Integer>;
+		for(int i=0;i<vx.size();i++) {
+			int xc=0;
+			if(vx.get(i).get(1)<vx.get((i+1)%n).get(1)) {
+				xc++;
+			}
+			if(vx.get(i).get(1)<vx.get((i-1+n)%n).get(1)) {
+				xc++;
+			}
+			vertexCounter.add(xc);
+			if((int)(double)vx.get(i).get(1)<minY) {
+				minY=(int)(double)vx.get(i).get(1);
+			}
+			if((int)Math.ceil(vx.get(i).get(1))>maxY) {
+				maxY=(int)(double)vx.get(i).get(0);
+			}
+			
+		}
+		minY=Math.max(0,minY);
+		maxY=Math.min(output.getFrameH(),maxY);
+		
+		//Constructing AEL
+		HashMap<Integer,ArrayList<Double>> ael =new HashMap<Integer,ArrayList<Double>>();
+		for(int i=minY;i<=maxY;i++) {
+			ael.put(i, new ArrayList<Double>());
+			for(int j=0;j<n;j++) {
+				int stIdx=j;
+				int edIdx=(j+1)%n;
+				IfritVectord st=vx.get(stIdx),ed=vx.get(edIdx);
+				if((int)(double)st.get(1)==i) {
+					for(int k=0;k<vertexCounter.get(j);k++) {
+						ael.get(i).add(st.get(0));
+					}
+				}
+				if((int)(double)st.get(1)==i||(int)(double)ed.get(1)==i) {
+					continue;
+				}
+				//Get intersections
+				
+			}
+			Collections.sort(ael.get(i));
+		}
+	}
 	public void rasterizationFinal(IfritFrame output, ArrayList<IfritPrimitiveBase> shape, IfritRenderMode renderMode) {
 		if(renderMode==IfritRenderMode.DOT) {
 			for(IfritPrimitiveBase i:shape) {
@@ -242,7 +306,12 @@ extends IfritRenderHandlerBase{
 		}
 		if(renderMode==IfritRenderMode.FULL_ARC) {
 			for(IfritPrimitiveBase i:shape) {
-				arcRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
+				arcRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar(),false);
+			}
+		}
+		if(renderMode==IfritRenderMode.ROUND) {
+			for(IfritPrimitiveBase i:shape) {
+				arcRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar(),true);
 			}
 		}
 	}
