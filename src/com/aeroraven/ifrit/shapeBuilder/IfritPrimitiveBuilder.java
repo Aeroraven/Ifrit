@@ -24,7 +24,7 @@ extends IfritShapeBuilderBase{
 	public void builderBegin() {
 		product=new IfritPrimitiveCompound();
 	}
-	public void addFromFile(String arg,int zdepth){
+	public void addFromString(String arg,int zdepth){
 		
 	}
 	public void addPresets(String arg,int zdepth,String ... xargs) {

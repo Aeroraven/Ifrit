@@ -17,7 +17,13 @@ public class IfritShapeDirector {
 		builder.builderBegin();
 		builder.setConfig("setx", offsetX);
 		builder.setConfig("sety", offsetY);
-		builder.addFromFile(image, zdepth);
+		builder.addFromString(image, zdepth);
+	}
+	public void createTextContainer(IfritShapeBuilderBase builder,String text,int offsetX,int offsetY,int zdepth) throws Exception {
+		builder.builderBegin();
+		builder.setConfig("setx", offsetX);
+		builder.setConfig("sety", offsetY);
+		builder.addFromString(text, zdepth);
 	}
 	public void createLine(IfritShapeBuilderBase builder,IfritVectord st,IfritVectord ed,int zdepth) {
 		builder.builderBegin();

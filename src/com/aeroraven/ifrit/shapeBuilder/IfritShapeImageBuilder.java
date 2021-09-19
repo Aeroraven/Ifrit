@@ -21,7 +21,7 @@ extends IfritShapeBuilderBase{
 	public void builderBegin() {
 		product=new IfritPrimitiveCompound();
 	}
-	public void addFromFile(String arg,int zdepth) throws Exception{
+	public void addFromString(String arg,int zdepth) throws Exception{
 		int r,g,b;
 		File file = new File(arg);
 		BufferedImage bi = null;

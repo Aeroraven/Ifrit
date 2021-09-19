@@ -5,6 +5,7 @@ import com.aeroraven.ifrit.natives.IfritGraphicsNativeWin32;
 import com.aeroraven.ifrit.scene.IfritScene;
 import com.aeroraven.ifrit.shapeBuilder.IfritShapeDirector;
 import com.aeroraven.ifrit.shapeBuilder.IfritPrimitiveBuilder;
+import com.aeroraven.ifrit.shapeBuilder.IfritShapeTextBuilder;
 import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.core.*;
 
@@ -28,6 +29,7 @@ public class IfritDemoLine {
 			//Create Primitive Generator
 			IfritShapeDirector shapeDirector = new IfritShapeDirector();
 			IfritPrimitiveBuilder lineBuilder = new IfritPrimitiveBuilder();
+			IfritShapeTextBuilder textBuilder = new IfritShapeTextBuilder();
 			
 			shapeDirector.setBackColor(lineBuilder, 255, 0, 0);
 			shapeDirector.setForeColor(lineBuilder, 255, 255, 255);
@@ -41,9 +43,17 @@ public class IfritDemoLine {
 			sprite.addPrimitive(lineBuilder.getResult());
 			
 			shapeDirector.setBackColor(lineBuilder, 0, 255, 0);
-			
-			shapeDirector.createSolidRectangle(lineBuilder,-1,IfritVectord.val(3.,3.),6,6);
+			shapeDirector.createRound(lineBuilder,IfritVectord.val(25.,25.),15,0);
 			sprite.addPrimitive(lineBuilder.getResult());
+			
+			shapeDirector.setBackColor(lineBuilder, 0, 0, 255);
+			shapeDirector.createSolidRectangle(lineBuilder,0,IfritVectord.val(25.,25.),35,15);
+			sprite.addPrimitive(lineBuilder.getResult());
+			
+			shapeDirector.setBackColor(textBuilder, 255, 0, 0);
+			shapeDirector.setForeColor(textBuilder, 255, 255, 255);
+			shapeDirector.createTextContainer(textBuilder, "Helloworldsƒ„∫√ ¿ΩÁ", 50, 20, 10);
+			sprite.addPrimitive(textBuilder.getResult());
 			
 			
 			//Component Attachment
@@ -51,6 +61,7 @@ public class IfritDemoLine {
 			
 			//Render
 			scene.render();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

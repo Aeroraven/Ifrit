@@ -61,6 +61,9 @@ extends IfritRenderHandlerBase{
 							continuousDisplaying=true;
 						}
 						outputBuffer+=newPx.getDispCh();
+						if(newPx.getDispCh().getBytes().length==1) {
+							outputBuffer+=" ";
+						}
 						//Update frame buffer
 						oldPx.setDispCh(new String(newPx.getDispCh()));
 						oldPx.setBgColor(newPx.getBgColor());
