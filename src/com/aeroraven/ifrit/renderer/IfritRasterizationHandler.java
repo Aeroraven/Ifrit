@@ -248,7 +248,7 @@ extends IfritRenderHandlerBase{
 		int minY=90000;
 		int maxY=-1;
 		int n=vx.size();
-		ArrayList<Integer> vertexCounter = new ArrayList<Integer>;
+		ArrayList<Integer> vertexCounter = new ArrayList<Integer>();
 		for(int i=0;i<vx.size();i++) {
 			int xc=0;
 			if(vx.get(i).get(1)<vx.get((i+1)%n).get(1)) {
@@ -272,6 +272,7 @@ extends IfritRenderHandlerBase{
 		//Constructing AEL
 		HashMap<Integer,ArrayList<Double>> ael =new HashMap<Integer,ArrayList<Double>>();
 		for(int i=minY;i<=maxY;i++) {
+			
 			ael.put(i, new ArrayList<Double>());
 			for(int j=0;j<n;j++) {
 				int stIdx=j;
@@ -280,15 +281,56 @@ extends IfritRenderHandlerBase{
 				if((int)(double)st.get(1)==i) {
 					for(int k=0;k<vertexCounter.get(j);k++) {
 						ael.get(i).add(st.get(0));
+						
 					}
 				}
-				if((int)(double)st.get(1)==i||(int)(double)ed.get(1)==i) {
+				if((int)(double)st.get(1)==i||(int)(double)ed.get(1)==i||st.get(1)==ed.get(1)) {
+					
+					continue;
+				}
+				if(Math.min(st.get(1),ed.get(1))>i||Math.max(ed.get(1),st.get(1))<i) {
+					
 					continue;
 				}
 				//Get intersections
+				double sA,sB,sC;
+				double tA,tB,tC;
+				double iX,iY;
+				sA=st.get(1)-ed.get(1);
+				sB=-st.get(0)+ed.get(0);
+				sC=st.get(0)*ed.get(1)-ed.get(0)*st.get(1);
+				tA=0;
+				tB=1;
+				tC=-i;
+				//(13*(-1)-1*0)/(-13*1-0
+				iX=(sB*tC-tB*sC)/(sA*tB-tA*sB);
+				iY=(tA*sC-sA*tC)/(sA*tB-tA*sB);
 				
+				ael.get(i).add(iX);
 			}
 			Collections.sort(ael.get(i));
+		}
+		//Color Approximation
+		IfritColor16 fgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(color4vecfg));
+		IfritColor16 bgc=IfritMath.findApporximateColor(IfritMath.convertCol4to3(color4vecbg));
+		
+		//Filling
+		for(int i=minY;i<=maxY;i++) {
+			
+			for(int j=0;j<ael.get(i).size();j+=2) {
+				
+				for(int k=(int)Math.floor(ael.get(i).get(j));k<(int)Math.round(ael.get(i).get(j+1));k++) {
+					IfritPixel px = output.getter(k, i);
+					px.setBgColor(bgc);
+					px.setFgColor(fgc);
+					px.setDispCh(dispCh);
+				}
+			}
+		}
+	}
+	public void lineloopRasterizer(IfritFrame output,ArrayList<IfritVectord> vx,IfritVectord color4vecfg, IfritVectord color4vecbg, String dispCh) {
+		for(int i=0;i<vx.size();i++) {
+			lineRasterizer(output,vx.get(i),vx.get((i+1)%vx.size()),color4vecfg,color4vecbg,dispCh);
 		}
 	}
 	public void rasterizationFinal(IfritFrame output, ArrayList<IfritPrimitiveBase> shape, IfritRenderMode renderMode) {
@@ -312,6 +354,16 @@ extends IfritRenderHandlerBase{
 		if(renderMode==IfritRenderMode.ROUND) {
 			for(IfritPrimitiveBase i:shape) {
 				arcRasterizer(output,i.getVertices().get(0),i.getVertices().get(1),i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar(),true);
+			}
+		}
+		if(renderMode==IfritRenderMode.TRIANGLE) {
+			for(IfritPrimitiveBase i:shape) {
+				ArrayList<IfritVectord> vx = new ArrayList<IfritVectord>();
+				vx.add(i.getVertices().get(0));
+				vx.add(i.getVertices().get(1));
+				vx.add(i.getVertices().get(2));
+				polygonRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
+				lineloopRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
 			}
 		}
 	}

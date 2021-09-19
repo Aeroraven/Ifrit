@@ -45,4 +45,13 @@ public class IfritShapeDirector {
 		insSet.add(new IfritVectord(ct.get(0),ct.get(1)-radius));
 		builder.addFromVertices(insSet, zdepth);
 	}
+	public void createTriangle(IfritShapeBuilderBase builder,IfritVectord t0,IfritVectord t1,IfritVectord t2,int zdepth) {
+		builder.builderBegin();
+		builder.setConfigStr("setmode", "triangle");
+		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
+		insSet.add(t0);
+		insSet.add(t1);
+		insSet.add(t2);
+		builder.addFromVertices(insSet, zdepth);
+	}
 }

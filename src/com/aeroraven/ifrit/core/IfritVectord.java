@@ -11,4 +11,7 @@ public class IfritVectord extends IfritVector<Double> {
 		}
 		return ret;
 	}
+	public static IfritVectord val(Double ...init_args) {
+		return new IfritVectord(init_args);
+	}
 }

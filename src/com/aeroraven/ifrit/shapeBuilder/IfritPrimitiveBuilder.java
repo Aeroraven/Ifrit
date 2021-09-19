@@ -34,6 +34,9 @@ extends IfritShapeBuilderBase{
 			if(xargs[0].equals("line")) {
 				builderMode="line";
 			}
+			if(xargs[0].equals("triangle")) {
+				builderMode="triangle";
+			}
 			if(xargs[0].equals("circle_arc")) {
 				builderMode="circle_arc";
 			}
@@ -88,6 +91,15 @@ extends IfritShapeBuilderBase{
 		if(builderMode.equals("circle_filled")) {
 			IfritPrimitiveRound tmp = new IfritPrimitiveRound(arg.get(0).get(0),arg.get(0).get(1),
 					arg.get(1).get(0),arg.get(1).get(1));
+			tmp.setZDepth(zdepth);
+			tmp.setDisplayChar(fillCh);
+			tmp.setForeColor4d(fgColor);
+			tmp.setBackColor4d(bgColor);
+			product.add(tmp);
+		}
+		if(builderMode.equals("triangle")) {
+			IfritPrimitiveTriangle tmp = new IfritPrimitiveTriangle(arg.get(0).get(0),arg.get(0).get(1),
+					arg.get(1).get(0),arg.get(1).get(1),arg.get(2).get(0),arg.get(2).get(1));
 			tmp.setZDepth(zdepth);
 			tmp.setDisplayChar(fillCh);
 			tmp.setForeColor4d(fgColor);

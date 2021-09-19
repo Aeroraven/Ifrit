@@ -33,7 +33,11 @@ public class IfritDemoLine {
 			shapeDirector.setForeColor(lineBuilder, 255, 255, 255);
 			shapeDirector.setFillChar(lineBuilder, "  ");
 			//shapeDirector.createLine(lineBuilder, new IfritVectord(0.,0.), new IfritVectord(60.,5.), 0);
-			shapeDirector.createRound(lineBuilder, new IfritVectord(50.,50.), 20., 0);
+			//shapeDirector.createRound(lineBuilder, new IfritVectord(50.,50.), 20., 0);
+			shapeDirector.createTriangle(lineBuilder,
+					IfritVectord.val(0.,0.) ,
+					IfritVectord.val(50.,40.) ,
+					IfritVectord.val(75.,20.) , 0);
 			
 			sprite.addPrimitive(lineBuilder.getResult());
 			

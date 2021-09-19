@@ -26,3 +26,8 @@ Primitive: Implement line and line rasterizer.
 Primitive: Implement full arc and arc rasterizer.
 
 Mechanism: Allow free configuration of pixel characters and colors
+
+== 2021.9.19 ==
+
+Rasterizer: Filled polygon rasterizer, Filled circle rasterizer, Line loop rasterizer
+
