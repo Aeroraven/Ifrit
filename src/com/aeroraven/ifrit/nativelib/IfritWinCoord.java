@@ -1,4 +1,4 @@
-package com.aeroraven.ifrit.win32;
+package com.aeroraven.ifrit.nativelib;
 
 public class IfritWinCoord {
 	private short wX;

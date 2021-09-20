@@ -9,4 +9,7 @@ public interface IfritComponentInterface {
 	public abstract int getZDepth();
 	public abstract ArrayList<IfritPrimitiveBase> getPrimitives();
 	public abstract void addPrimitive(IfritPrimitiveBase x);
+	public abstract void addPrimitive(IfritPrimitiveBase x,int frameIdx);
+	public abstract void frameAdvance();
+	public abstract void setTotalFrames(int cnt);
 }

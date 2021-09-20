@@ -262,13 +262,13 @@ extends IfritRenderHandlerBase{
 				minY=(int)(double)vx.get(i).get(1);
 			}
 			if((int)Math.ceil(vx.get(i).get(1))>maxY) {
-				maxY=(int)(double)vx.get(i).get(0);
+				maxY=(int)(double)vx.get(i).get(1);
 			}
 			
 		}
+		
 		minY=Math.max(0,minY);
 		maxY=Math.min(output.getFrameH(),maxY);
-		
 		//Constructing AEL
 		HashMap<Integer,ArrayList<Double>> ael =new HashMap<Integer,ArrayList<Double>>();
 		for(int i=minY;i<=maxY;i++) {
@@ -285,27 +285,23 @@ extends IfritRenderHandlerBase{
 					}
 				}
 				if((int)(double)st.get(1)==i||(int)(double)ed.get(1)==i||st.get(1)==ed.get(1)) {
-					
 					continue;
 				}
 				if(Math.min(st.get(1),ed.get(1))>i||Math.max(ed.get(1),st.get(1))<i) {
-					
 					continue;
 				}
+				
 				//Get intersections
 				double sA,sB,sC;
 				double tA,tB,tC;
-				double iX,iY;
+				double iX;
 				sA=st.get(1)-ed.get(1);
 				sB=-st.get(0)+ed.get(0);
 				sC=st.get(0)*ed.get(1)-ed.get(0)*st.get(1);
 				tA=0;
 				tB=1;
 				tC=-i;
-				//(13*(-1)-1*0)/(-13*1-0
 				iX=(sB*tC-tB*sC)/(sA*tB-tA*sB);
-				iY=(tA*sC-sA*tC)/(sA*tB-tA*sB);
-				
 				ael.get(i).add(iX);
 			}
 			Collections.sort(ael.get(i));
@@ -318,7 +314,6 @@ extends IfritRenderHandlerBase{
 		for(int i=minY;i<=maxY;i++) {
 			
 			for(int j=0;j<ael.get(i).size();j+=2) {
-				
 				for(int k=(int)Math.floor(ael.get(i).get(j));k<(int)Math.round(ael.get(i).get(j+1));k++) {
 					IfritPixel px = output.getter(k, i);
 					px.setBgColor(bgc);
@@ -372,6 +367,7 @@ extends IfritRenderHandlerBase{
 			}
 		}
 		if(renderMode==IfritRenderMode.POLYGON) {
+			//System.out.println("POLYTON!!");
 			for(IfritPrimitiveBase i:shape) {
 				ArrayList<IfritVectord> vx = i.getVertices();
 				polygonRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());

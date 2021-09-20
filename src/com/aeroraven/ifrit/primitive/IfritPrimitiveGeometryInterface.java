@@ -1,7 +1,6 @@
 package com.aeroraven.ifrit.primitive;
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.*;
-import com.aeroraven.ifrit.primitive.*;
 import java.util.*;
 
 public interface IfritPrimitiveGeometryInterface {

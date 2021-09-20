@@ -1,6 +1,5 @@
 package com.aeroraven.ifrit.core;
 
-import java.util.ArrayList;
 import java.lang.Math;
 
 public class IfritVector<T> extends IfritVectorBase<T> {

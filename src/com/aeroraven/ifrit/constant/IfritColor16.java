@@ -1,7 +1,5 @@
 package com.aeroraven.ifrit.constant;
 
-import com.aeroraven.ifrit.core.*;
-
 public enum IfritColor16 {
 	BLACK,
 	RED,

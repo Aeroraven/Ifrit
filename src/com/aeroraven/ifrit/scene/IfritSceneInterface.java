@@ -1,7 +1,6 @@
 package com.aeroraven.ifrit.scene;
 
 import com.aeroraven.ifrit.core.*;
-import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.component.*;
 import java.util.ArrayList;
 

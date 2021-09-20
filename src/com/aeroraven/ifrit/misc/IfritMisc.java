@@ -6,11 +6,8 @@ import javax.imageio.ImageIO;
 import com.aeroraven.ifrit.core.*;
 import com.aeroraven.ifrit.constant.*;
 import com.aeroraven.ifrit.natives.*;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.OutputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 
 public class IfritMisc {
 	public static void getImagePixel(String image) throws Exception {

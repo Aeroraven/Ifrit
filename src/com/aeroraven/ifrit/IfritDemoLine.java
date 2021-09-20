@@ -6,7 +6,6 @@ import com.aeroraven.ifrit.scene.IfritScene;
 import com.aeroraven.ifrit.shapeBuilder.IfritShapeDirector;
 import com.aeroraven.ifrit.shapeBuilder.IfritPrimitiveBuilder;
 import com.aeroraven.ifrit.shapeBuilder.IfritShapeTextBuilder;
-import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.core.*;
 
 public class IfritDemoLine {

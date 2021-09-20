@@ -1,12 +1,8 @@
 package com.aeroraven.ifrit.shapeBuilder;
 
 
-import com.aeroraven.ifrit.natives.IfritGraphicsNativeWin32;
 import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.core.*;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.*;
 
 public class IfritShapeTextBuilder

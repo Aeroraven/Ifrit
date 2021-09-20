@@ -1,9 +1,9 @@
 package com.aeroraven.ifrit;
 
 import com.aeroraven.ifrit.component.*;
+import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 import com.aeroraven.ifrit.scene.*;
 import com.aeroraven.ifrit.shapeBuilder.*;
-import com.aeroraven.ifrit.win32.IfritConsoleInterface;
 import com.aeroraven.ifrit.natives.*;
 
 public class IfritDemo2 {

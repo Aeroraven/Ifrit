@@ -4,6 +4,46 @@ import com.aeroraven.ifrit.constant.*;
 import com.aeroraven.ifrit.core.*;
 
 public class IfritEnumConverter {
+	public static int Col16toFgANSI(IfritColor16 arg) {
+		switch(arg) {
+		case BLACK:
+			return 30;
+		case RED:
+			return 31;
+		case GREEN:
+			return 32;
+		case BLUE:
+			return 34;
+		case YELLOW:
+			return 33;
+		case MAGENTA:
+			return 35;
+		case CYAN:
+			return 36;
+		case GRAY:
+			return 37;
+		case LIGHT_RED:
+			return 91;
+		case LIGHT_GREEN:
+			return 92;
+		case LIGHT_BLUE:
+			return 94;
+		case LIGHT_YELLOW:
+			return 93;
+		case LIGHT_MAGENTA:
+			return 95;
+		case LIGHT_CYAN:
+			return 96;
+		case WHITE:
+			return 97;
+		default:
+			return 97;
+			
+		}
+	}
+	public static int Col16toBgANSI(IfritColor16 arg) {
+		return IfritEnumConverter.Col16toFgANSI(arg)+10;
+	}
 	public static IfritVectord Col16toVec3(IfritColor16 arg) {
 		switch(arg) {
 		case BLACK:

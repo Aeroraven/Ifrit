@@ -6,12 +6,8 @@ import com.aeroraven.ifrit.component.IfritComponentBase;
 import com.aeroraven.ifrit.core.IfritGlobal;
 import com.aeroraven.ifrit.natives.*;
 import com.aeroraven.ifrit.constant.*;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.OutputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.IOException;
 
 public final class IfritDisplayHandler
 extends IfritRenderHandlerBase{
@@ -33,7 +29,7 @@ extends IfritRenderHandlerBase{
 	public void handleFrame(IfritFrameBase fr) {
 		//Create Native Display Adapter
 		try {
-			IfritGraphicsNativeBase cgapi = new IfritGraphicsNativeWin32();
+			IfritGraphicsNativeBase cgapi = IfritGlobal.getInst().getGraphicsAPI();
 			int flushWidth = Math.min(fr.frameW, frameBuffer.frameW);
 			int flushHeight = Math.min(fr.frameH, frameBuffer.frameH);
 			String outputBuffer = "";

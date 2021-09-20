@@ -1,9 +1,6 @@
 package com.aeroraven.ifrit;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import com.aeroraven.ifrit.win32.IfritConsoleInterface;
-import com.aeroraven.ifrit.misc.*;
+import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 
 
 public class IfritDemo {
@@ -28,7 +25,5 @@ public class IfritDemo {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Scanner input=new Scanner(System.in);
-		String str=input.next();
 	}
 }
