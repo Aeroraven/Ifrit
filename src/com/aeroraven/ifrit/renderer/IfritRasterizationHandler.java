@@ -315,6 +315,12 @@ extends IfritRenderHandlerBase{
 			
 			for(int j=0;j<ael.get(i).size();j+=2) {
 				for(int k=(int)Math.floor(ael.get(i).get(j));k<(int)Math.round(ael.get(i).get(j+1));k++) {
+					if(k<0||k>=output.getFrameW()) {
+						return;
+					}
+					if(i<0||i>=output.getFrameH()) {
+						return;
+					}
 					IfritPixel px = output.getter(k, i);
 					px.setBgColor(bgc);
 					px.setFgColor(fgc);

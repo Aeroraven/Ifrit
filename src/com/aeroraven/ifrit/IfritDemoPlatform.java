@@ -56,7 +56,13 @@ public class IfritDemoPlatform {
 		app.getMediator().addCommand(new IfritCPSwitchRenderScene(scene));
 		app.getMediator().addCommand(new IfritCPAddIOEventHandler("ev1",(IfritEventHandler)this::moveHandler));
 	}
-	
-	
-
+	//patterns used:
+	//1.template method
+	//2.singleton
+	//3.factory method
+	//4.composite
+	//5.command
+	//6.bridge
+	//7.facade
+	//8.event queue
 }

@@ -7,7 +7,6 @@ import com.aeroraven.ifrit.natives.IfritGraphicsNativeBase;
 public final class IfritGlobal {
 	private static IfritGlobal instance;
 	private IfritEnvironmentAdapter envAdapter;
-	private IfritDisplayMode displayMode;
 	//Global Variables
 	int frameUpdateRate = 100;
 	
