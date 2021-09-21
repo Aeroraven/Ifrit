@@ -3,6 +3,7 @@ package com.aeroraven.ifrit.core;
 import java.lang.Math;
 
 public class IfritVector<T> extends IfritVectorBase<T> {
+	@SafeVarargs
 	public IfritVector(T ... init_args){
 		super(init_args);
 	}
