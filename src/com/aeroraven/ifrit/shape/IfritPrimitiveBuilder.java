@@ -1,4 +1,4 @@
-package com.aeroraven.ifrit.shapeBuilder;
+package com.aeroraven.ifrit.shape;
 
 
 import com.aeroraven.ifrit.primitive.*;

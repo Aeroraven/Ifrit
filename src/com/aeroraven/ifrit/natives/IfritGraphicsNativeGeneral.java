@@ -4,7 +4,7 @@ import com.aeroraven.ifrit.constant.IfritColor16;
 import com.aeroraven.ifrit.constant.IfritCursorMode;
 import com.aeroraven.ifrit.misc.IfritEnumConverter;
 
-public abstract class IfritGraphicsNativeGeneral
+abstract class IfritGraphicsNativeGeneral
 extends IfritGraphicsNativeBase{
 
 	@Override

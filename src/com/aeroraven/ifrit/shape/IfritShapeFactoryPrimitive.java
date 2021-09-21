@@ -1,57 +1,57 @@
-package com.aeroraven.ifrit.shapeBuilder;
+package com.aeroraven.ifrit.shape;
 
-import com.aeroraven.ifrit.core.*;
-import java.util.*;
+import java.util.ArrayList;
 
-public class IfritShapeDirector {
-	public void setFillChar(IfritShapeBuilderBase builder,String fillCh) {
+import com.aeroraven.ifrit.core.IfritVectord;
+
+public class IfritShapeFactoryPrimitive
+extends IfritShapeFactoryBase{
+	IfritShapeFactory parent;
+	public IfritShapeFactoryPrimitive(IfritShapeFactory x) {
+		builder = new IfritPrimitiveBuilder();
+		parent=x;
+	}
+	public IfritShapeFactoryPrimitive setFillChar(String fillCh) {
 		builder.setConfigStr("setFillCh", new String(fillCh));
+		return this;
 	}
-	public void setForeColor(IfritShapeBuilderBase builder,int R,int G,int B) {
+	public IfritShapeFactoryPrimitive setForeColor(int R,int G,int B) {
 		builder.setConfig("setForeColor3", R,G,B);
+		return this;
 	}
-	public void setBackColor(IfritShapeBuilderBase builder,int R,int G,int B) {
+	public IfritShapeFactoryPrimitive setBackColor(int R,int G,int B) {
 		builder.setConfig("setBackColor3", R,G,B);
+		return this;
 	}
-	public void createImageContainer(IfritShapeBuilderBase builder,String image,int offsetX,int offsetY,int zdepth) throws Exception {
-		builder.builderBegin();
-		builder.setConfig("setx", offsetX);
-		builder.setConfig("sety", offsetY);
-		builder.addFromString(image, zdepth);
-	}
-	public void createTextContainer(IfritShapeBuilderBase builder,String text,int offsetX,int offsetY,int zdepth) throws Exception {
-		builder.builderBegin();
-		builder.setConfig("setx", offsetX);
-		builder.setConfig("sety", offsetY);
-		builder.addFromString(text, zdepth);
-	}
-	public void createLine(IfritShapeBuilderBase builder,IfritVectord st,IfritVectord ed,int zdepth) {
+	public IfritShapeFactoryPrimitive createLine(IfritVectord st,IfritVectord ed,int zdepth) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "line");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
 		insSet.add(st);
 		insSet.add(ed);
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
-	
-	public void createCircleArc(IfritShapeBuilderBase builder,IfritVectord ct,double radius,int zdepth) {
+	public IfritShapeFactoryPrimitive createCircleArc(IfritVectord ct,double radius,int zdepth) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "circle_arc");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
 		insSet.add(ct);
 		insSet.add(new IfritVectord(ct.get(0),ct.get(1)-radius));
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
 	
-	public void createRound(IfritShapeBuilderBase builder,IfritVectord ct,double radius,int zdepth) {
+	public IfritShapeFactoryPrimitive createRound(IfritVectord ct,double radius,int zdepth) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "circle_filled");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
 		insSet.add(ct);
 		insSet.add(new IfritVectord(ct.get(0),ct.get(1)-radius));
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
-	public void createTriangle(IfritShapeBuilderBase builder,IfritVectord t0,IfritVectord t1,IfritVectord t2,int zdepth) {
+	public IfritShapeFactoryPrimitive createTriangle(IfritVectord t0,IfritVectord t1,IfritVectord t2,int zdepth) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "triangle");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
@@ -59,8 +59,9 @@ public class IfritShapeDirector {
 		insSet.add(t1);
 		insSet.add(t2);
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
-	public void createHollowPolygon(IfritShapeBuilderBase builder,int zdepth,IfritVectord ...vertices) {
+	public IfritShapeFactoryPrimitive createHollowPolygon(int zdepth,IfritVectord ...vertices) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "lineloop");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
@@ -68,8 +69,9 @@ public class IfritShapeDirector {
 			insSet.add(i);
 		}
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
-	public void createSolidPolygon(IfritShapeBuilderBase builder,int zdepth,IfritVectord ...vertices) {
+	public IfritShapeFactoryPrimitive createSolidPolygon(int zdepth,IfritVectord ...vertices) {
 		builder.builderBegin();
 		builder.setConfigStr("setmode", "polygon");
 		ArrayList<IfritVectord> insSet = new ArrayList<IfritVectord>();
@@ -77,20 +79,27 @@ public class IfritShapeDirector {
 			insSet.add(i);
 		}
 		builder.addFromVertices(insSet, zdepth);
+		return this;
 	}
 	
-	public void createHollowRectangle(IfritShapeBuilderBase builder,int zdepth,IfritVectord st,double width,double height) {
+	public IfritShapeFactoryPrimitive createHollowRectangle(int zdepth,IfritVectord st,double width,double height) {
 		IfritVectord rt=IfritVectord.val(st.get(0)+width,st.get(1));
 		IfritVectord rb=IfritVectord.val(st.get(0)+width,st.get(1)+height);
 		IfritVectord lb=IfritVectord.val(st.get(0),st.get(1)+height);
 		IfritVectord lt=IfritVectord.val(st.get(0),st.get(1));
-		createHollowPolygon(builder,zdepth,lt,rt,rb,lb);
+		createHollowPolygon(zdepth,lt,rt,rb,lb);
+		return this;
 	}
-	public void createSolidRectangle(IfritShapeBuilderBase builder,int zdepth,IfritVectord st,double width,double height) {
+	
+	public IfritShapeFactoryPrimitive createSolidRectangle(int zdepth,IfritVectord st,double width,double height) {
 		IfritVectord rt=IfritVectord.val(st.get(0)+width,st.get(1));
 		IfritVectord rb=IfritVectord.val(st.get(0)+width,st.get(1)+height);
 		IfritVectord lb=IfritVectord.val(st.get(0),st.get(1)+height);
 		IfritVectord lt=IfritVectord.val(st.get(0),st.get(1));
-		createSolidPolygon(builder,zdepth,lt,rt,rb,lb);
+		createSolidPolygon(zdepth,lt,rt,rb,lb);
+		return this;
+	}
+	public void store() {
+		parent.setCache(builder.getResult());
 	}
 }

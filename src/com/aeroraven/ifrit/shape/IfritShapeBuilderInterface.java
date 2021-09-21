@@ -1,7 +1,8 @@
-package com.aeroraven.ifrit.shapeBuilder;
+package com.aeroraven.ifrit.shape;
 
 import java.util.*;
 import com.aeroraven.ifrit.core.*;
+import com.aeroraven.ifrit.primitive.IfritPrimitiveCompound;
 
 public interface IfritShapeBuilderInterface {
 	void builderBegin();
@@ -10,4 +11,5 @@ public interface IfritShapeBuilderInterface {
 	void addPresets(String arg,int zdepth,String ... xargs);
 	void setConfigStr(String arg,String ...xargs);
 	void setConfig(String arg,Integer ...xargs);
+	public IfritPrimitiveCompound getResult();
 }

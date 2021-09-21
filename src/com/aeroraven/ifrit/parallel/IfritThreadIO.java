@@ -1,22 +1,38 @@
 package com.aeroraven.ifrit.parallel;
 
-import com.aeroraven.ifrit.natives.IfritGraphicsNativeWin32;
+import java.util.*;
+
+import com.aeroraven.ifrit.constant.IfritEventName;
+import com.aeroraven.ifrit.core.IfritGlobal;
+import com.aeroraven.ifrit.natives.IfritGraphicsNativeBase;
+import com.aeroraven.ifrit.event.*;
 
 public class IfritThreadIO 
 extends IfritThreadBase{
 	private Thread t;
+	HashMap<String,IfritEventHandler> eventHandlers;
+	
+	public IfritThreadIO() {
+		eventHandlers = new HashMap<String,IfritEventHandler>();
+	}
+	
+	public void addEventHandler(String alias,IfritEventHandler x) {
+		eventHandlers.put(alias, x);
+	}
+	public void removeEventHandler(String alias) {
+		eventHandlers.remove(alias);
+	}
 	
 	@Override
 	public void run() {
 		while(true) {
-			IfritGraphicsNativeWin32 nat= new IfritGraphicsNativeWin32();
-			nat.cls();
+			IfritGraphicsNativeBase nat = IfritGlobal.getInst().getGraphicsAPI();
 			char x=nat.getch();
-			System.out.println("");
-			System.out.println("You pressed = "+x);
+			for(String i:eventHandlers.keySet()) {
+				eventHandlers.get(i).handle(IfritEventName.KEYBOARD_PRESS, Integer.valueOf(x));
+			}
 		}
 	}
-
 	public void start() {
 		t = new Thread(this,"IfritIOThread");
 		t.start();

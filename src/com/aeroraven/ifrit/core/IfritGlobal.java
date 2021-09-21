@@ -8,6 +8,9 @@ public final class IfritGlobal {
 	private static IfritGlobal instance;
 	private IfritEnvironmentAdapter envAdapter;
 	private IfritDisplayMode displayMode;
+	//Global Variables
+	int frameUpdateRate = 100;
+	
 	private IfritGlobal() {
 		envAdapter = IfritEnvironmentAdapter.getInst();
 	}
@@ -24,9 +27,16 @@ public final class IfritGlobal {
 		return 1000;
 	}
 	public int getFrameUpdateInterval() {
-		return 100;
+		return frameUpdateRate;
 	}
+	public void setFrameUpdateInterval(int x) {
+		frameUpdateRate = x;
+	}
+	
 	public IfritGraphicsNativeBase getGraphicsAPI() {
 		return envAdapter.getAPI();
+	}
+	public IfritEnvironmentAdapter getEnv() {
+		return envAdapter;
 	}
 }

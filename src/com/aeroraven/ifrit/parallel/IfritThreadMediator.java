@@ -3,6 +3,7 @@ package com.aeroraven.ifrit.parallel;
 import java.util.*;
 import com.aeroraven.ifrit.command.*;
 import com.aeroraven.ifrit.core.*;
+import com.aeroraven.ifrit.exception.IfritCommandException;
 
 public class IfritThreadMediator
 extends IfritCommandScheduler
@@ -55,7 +56,11 @@ implements Runnable{
 					e.printStackTrace();
 				}
 			}
-			executeCommand(this,this.threadList);
+			try {
+				executeCommand(this,this.threadList);
+			} catch (IfritCommandException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

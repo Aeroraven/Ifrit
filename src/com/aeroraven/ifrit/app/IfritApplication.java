@@ -1,6 +1,7 @@
 package com.aeroraven.ifrit.app;
 
 import com.aeroraven.ifrit.core.IfritGlobal;
+import com.aeroraven.ifrit.natives.IfritEnvironmentAdapter;
 import com.aeroraven.ifrit.parallel.IfritThreadMediator;
 
 public final class IfritApplication {
@@ -22,5 +23,8 @@ public final class IfritApplication {
 	}
 	public IfritGlobal getGlobal() {
 		return global;
+	}
+	public IfritEnvironmentAdapter getEnv() {
+		return global.getEnv();
 	}
 }

@@ -2,7 +2,7 @@ package com.aeroraven.ifrit.renderer;
 
 import com.aeroraven.ifrit.constant.*;
 
-public final class IfritPixel {
+final class IfritPixel {
 	private String dispCh;
 	private int windowX;
 	private int windowY;

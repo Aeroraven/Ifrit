@@ -9,7 +9,7 @@ import com.aeroraven.ifrit.constant.*;
 import java.io.OutputStream;
 import java.io.BufferedOutputStream;
 
-public final class IfritDisplayHandler
+final class IfritDisplayHandler
 extends IfritRenderHandlerBase{
 	private static IfritDisplayHandler instance;
 	private IfritFrame frameBuffer;

@@ -121,7 +121,9 @@ JNIEXPORT jint JNICALL
 Java_com_aeroraven_ifrit_nativelib_IfritConsoleInterface_ICI_1Getch
 (JNIEnv* jenv, jclass jcl) {
 #ifdef IFRIT_WINDOWS
-	return _getch();
+	int s = _getch();
+	if (s == 224) s = _getch() + 224;
+	return s;
 #else
 	struct termios tm, tm_old;
 	int fd = 0, ch;

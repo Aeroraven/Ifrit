@@ -5,7 +5,7 @@ import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 
 
 
-public final class IfritGraphicsNativeANSI
+final class IfritGraphicsNativeANSI
 extends IfritGraphicsNativeGeneral{
 
 	@Override

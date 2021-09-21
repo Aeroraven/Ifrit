@@ -9,7 +9,7 @@ import com.aeroraven.ifrit.constant.*;
 import com.aeroraven.ifrit.core.*;
 import com.aeroraven.ifrit.misc.IfritMath;
 
-public class IfritRasterizationHandler
+class IfritRasterizationHandler
 extends IfritRenderHandlerBase{
 	public void dotRasterizer(IfritFrame output,IfritVectord pt,IfritVectord colvec4,IfritVectord colvec4bg,String dispCh) {
 		int ptX = (int)(double)(pt.get(0));
@@ -30,10 +30,10 @@ extends IfritRenderHandlerBase{
 		closetIdx=3;
 		int ptRX = (int)(double)distpt.get(closetIdx).get(0);
 		int ptRY = (int)(double)distpt.get(closetIdx).get(1);
-		if(ptRX>=output.frameW) {
+		if(ptRX>=output.frameW||ptRX<0) {
 			return;
 		}
-		if(ptRY>=output.frameH) {
+		if(ptRY>=output.frameH||ptRY<0) {
 			return;
 		}
 		output.getter(ptRX, ptRY).setDispCh(dispCh);

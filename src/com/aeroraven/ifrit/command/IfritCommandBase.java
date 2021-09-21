@@ -2,6 +2,8 @@ package com.aeroraven.ifrit.command;
 
 import java.util.*;
 
+import com.aeroraven.ifrit.exception.IfritCommandException;
+
 public abstract class IfritCommandBase {
 	protected ArrayList<Object> paramList;
 	public IfritCommandBase(Object ...objects) {
@@ -16,6 +18,6 @@ public abstract class IfritCommandBase {
 			paramList.add(i);
 		}
 	}
-	public abstract void execute(Object ...objects);
+	public abstract void execute(Object ...objects) throws IfritCommandException;
 	public abstract void undo();
 }
