@@ -5,7 +5,7 @@ import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.core.*;
 import java.util.*;
 
-public class IfritShapeTextBuilder
+class IfritShapeTextBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;
 	String fillCh="  ";

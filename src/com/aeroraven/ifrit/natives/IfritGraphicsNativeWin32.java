@@ -3,7 +3,7 @@ package com.aeroraven.ifrit.natives;
 import com.aeroraven.ifrit.constant.IfritCursorMode;
 import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 
-public final class IfritGraphicsNativeWin32
+final class IfritGraphicsNativeWin32
 extends IfritGraphicsNativeGeneral{
 	private long hstdIn,hstdOut,hstdErr;
 	
@@ -27,6 +27,7 @@ extends IfritGraphicsNativeGeneral{
 		IfritConsoleInterface.ICI_SetConsoleMode(hstdErr, modeErr|0x0004);
 		
 		setCursorMode(IfritCursorMode.HIDDEN);
+		setConsoleTitle("Ifrit Application for Win32");
 		cls();
 	}
 

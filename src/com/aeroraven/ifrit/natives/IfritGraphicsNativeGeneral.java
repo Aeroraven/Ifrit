@@ -46,5 +46,10 @@ extends IfritGraphicsNativeBase{
 		System.out.print("\033[H\033[2J");
 		
 	}
+	
+	@Override
+	public void setConsoleTitle(String e) {
+		System.out.print("\033]0;"+e+"| Build with Ifrit "+"\007");
+	}
 
 }

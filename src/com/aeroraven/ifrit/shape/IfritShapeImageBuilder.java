@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.*;
 
-public class IfritShapeImageBuilder
+class IfritShapeImageBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;
 	String fillCh="  ";

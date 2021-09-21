@@ -47,7 +47,7 @@ public class IfritDemoPlatform {
 		shapeFactory.textBuilder()
 					.setBackColor(255, 0, 0)
 					.setForeColor(255,255, 255)
-					.createTextContainer("Hello World", 0, 0, 0)
+					.createTextWithRectBorder("HelloWorld", 0, 0, 12, 5, 0)
 					.store();
 		
 		sprite.addPrimitive(shapeFactory.getFinalShape());	

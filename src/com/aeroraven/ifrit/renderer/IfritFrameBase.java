@@ -3,7 +3,7 @@ package com.aeroraven.ifrit.renderer;
 import java.util.*;
 
 
-public abstract class IfritFrameBase {
+abstract class IfritFrameBase {
 	protected HashMap<Integer,IfritPixel> pixels;
 	int frameW,frameH;
 	public void setFrame(int w,int h) {
