@@ -61,4 +61,17 @@ implements IfritSpriteNotifyInterface{
 			shapeList.add(new ArrayList<IfritPrimitiveBase>());
 		}
 	}
+
+	@Override
+	public int getLeftMargin() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<IfritComponentBase> getChildComponents() {
+		ArrayList<IfritComponentBase> ret = new ArrayList<IfritComponentBase>();
+		ret.add(this);
+		return ret;
+	}
 }

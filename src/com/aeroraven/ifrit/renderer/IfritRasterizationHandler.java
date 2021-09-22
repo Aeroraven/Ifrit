@@ -163,11 +163,11 @@ extends IfritRenderHandlerBase{
 		while(dx-cx<=dy-cy) {
 			if(delta<=0) {
 				dx++;
-				delta+=4*(dx-1-cx)+7;
+				delta+=4*(dx-1-cx)+6;
 			}else {
 				dx++;
 				dy--;
-				delta+=4*((dx-1-cx)-(dy+1-cy))+11;
+				delta+=4*((dx-1-cx)-(dy+1-cy))+10;
 			}
 			if(!doFilling) {
 				arcPixelsX.add(Integer.valueOf(dx));
