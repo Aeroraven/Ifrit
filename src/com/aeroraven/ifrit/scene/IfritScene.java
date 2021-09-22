@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import com.aeroraven.ifrit.app.IfritApplication;
 import com.aeroraven.ifrit.command.IfritCPSetIOSceneEventHandler;
@@ -25,6 +26,9 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 	private int activeContainerComsIdx = 0;
 	
 	public void selectableFocusHandler(IfritEventName eventName, Object ...params) {
+		if(activeContainerComs.size()==0) {
+			return;
+		}
 		IfritApplication app = IfritApplication.createApplication();
 		if(activeContainerComsIdx<activeContainerComs.size()) {
 			IfritComponentAbstractSelectable xt = (IfritComponentAbstractSelectable)activeContainerComs.get(activeContainerComsIdx);
@@ -83,16 +87,14 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 	}
 
 	
-	private void updateActiveComs() {
+	private synchronized void updateActiveComs() {
 		activeContainer = this;
 		activeContainerComs = this.getSortedComponentsByLeftMargin();
-		if(activeContainerComsIdx<activeContainerComs.size()) {
-			IfritComponentAbstractSelectable xt = (IfritComponentAbstractSelectable)activeContainerComs.get(activeContainerComsIdx);
-			xt.onBlur();
-		}
-		for(IfritComponentBase i:activeContainerComs) {
+		Iterator<IfritComponentBase> iterator = activeContainerComs.iterator();
+		while(iterator.hasNext()) {
+			IfritComponentBase i = iterator.next();
 			if(!(i instanceof IfritComponentAbstractSelectable)) {
-				activeContainerComs.remove(i);
+				iterator.remove();
 			}
 		}
 		if(activeContainerComs.size()>0) {

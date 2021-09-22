@@ -27,7 +27,7 @@ extends IfritGraphicsNativeGeneral{
 		IfritConsoleInterface.ICI_SetConsoleMode(hstdErr, modeErr|0x0004);
 		
 		setCursorMode(IfritCursorMode.HIDDEN);
-		setConsoleTitle("Ifrit Application for Win32");
+		setConsoleTitle("Demo ");
 		cls();
 	}
 
