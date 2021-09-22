@@ -54,6 +54,7 @@ extends IfritThreadBase{
 	public void setActiveScene(IfritScene arg) {
 		synchronized(mutex) {
 			activeScene=arg;
+			activeScene.onRenderHooked();
 		}
 	}
 	

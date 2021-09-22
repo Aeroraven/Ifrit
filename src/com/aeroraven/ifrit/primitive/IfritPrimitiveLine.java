@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
-public final class IfritPrimitiveLine extends IfritPrimitiveBase {
+public final class IfritPrimitiveLine
+extends IfritPrimitiveBase {
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	
@@ -131,5 +132,13 @@ public final class IfritPrimitiveLine extends IfritPrimitiveBase {
 			i.set(0, i.get(0)+x);
 			i.set(1, i.get(1)+y);
 		}
+	}
+	@Override
+	public double getLeftMargin() {
+		return Math.min(pointlist.get(0).get(0), pointlist.get(1).get(0));
+	}
+	@Override
+	public double getTopMargin() {
+		return Math.min(pointlist.get(0).get(1), pointlist.get(1).get(1));
 	}
 }

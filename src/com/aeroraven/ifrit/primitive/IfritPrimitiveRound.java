@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
+import com.aeroraven.ifrit.misc.IfritMath;
 
 public final class IfritPrimitiveRound
 extends IfritPrimitiveBase{
@@ -143,5 +144,14 @@ extends IfritPrimitiveBase{
 			i.set(0, i.get(0)+x);
 			i.set(1, i.get(1)+y);
 		}
+	}
+	public double getLeftMargin() {
+		double radius = IfritMath.getEculideanDist(pointlist.get(0), pointlist.get(1));
+		return pointlist.get(0).get(0)-radius;
+	}
+	@Override
+	public double getTopMargin() {
+		double radius = IfritMath.getEculideanDist(pointlist.get(0), pointlist.get(1));
+		return pointlist.get(0).get(1)-radius;
 	}
 }

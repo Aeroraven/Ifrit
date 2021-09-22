@@ -3,6 +3,7 @@ package com.aeroraven.ifrit.component;
 public abstract class IfritComponentBase
 implements IfritComponentInterface,Comparable<IfritComponentBase>{
 	private int zdepth;
+	protected boolean isFinal;
 	public void setZDepth(int x) {
 		zdepth=x;
 	}

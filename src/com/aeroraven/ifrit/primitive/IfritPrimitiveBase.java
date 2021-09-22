@@ -44,4 +44,5 @@ implements IfritPrimitiveEventInterface, IfritPrimitiveGeometryInterface,Compara
 			return 1;
 		}
 	}
+	
 }

@@ -6,7 +6,8 @@ import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 import java.util.Collections;
 
-public class IfritPrimitiveCompound extends IfritPrimitiveBase {
+public class IfritPrimitiveCompound 
+extends IfritPrimitiveBase {
 	protected ArrayList<IfritPrimitiveBase> child;
 	
 	public IfritPrimitiveCompound() {
@@ -103,5 +104,21 @@ public class IfritPrimitiveCompound extends IfritPrimitiveBase {
 	}
 	public String getDisplayChar() {
 		return this.dispChar;
+	}
+	@Override
+	public double getLeftMargin() {
+		double leftMargin = 1e+9;
+		for(IfritPrimitiveBase i:child) {
+			leftMargin = Math.min(leftMargin, i.getLeftMargin());
+		}
+		return leftMargin;
+	}
+	@Override
+	public double getTopMargin() {
+		double topMargin = 1e+9;
+		for(IfritPrimitiveBase i:child) {
+			topMargin = Math.min(topMargin, i.getTopMargin());
+		}
+		return topMargin;
 	}
 }

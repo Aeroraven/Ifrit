@@ -3,19 +3,22 @@ package com.aeroraven.ifrit.component;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.aeroraven.ifrit.constant.IfritEventName;
 import com.aeroraven.ifrit.core.IfritDefs;
+import com.aeroraven.ifrit.event.IfritEventHandler;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 
-public class IfritSprite 
+public class IfritButton
 extends IfritComponentBase
-implements IfritSpriteNotifyInterface{
+implements IfritComponentAbstractSelectable{
 	private ArrayList<ArrayList<IfritPrimitiveBase>> shapeList;
 	private int currentFrameIdx;
 	private int totalFrames;
+	private IfritEventHandler clickHandler,selectHandler;
 	
-	public IfritSprite() {
+	public IfritButton() {
 		isFinal=true;
-		totalFrames=1;
+		totalFrames=2;
 		currentFrameIdx=0;
 		shapeList = new ArrayList<ArrayList<IfritPrimitiveBase>>();
 		for(int i=0;i<totalFrames;i++) {
@@ -82,4 +85,36 @@ implements IfritSpriteNotifyInterface{
 		ret.add(this);
 		return ret;
 	}
+
+	@Override
+	public void onClick() {
+		if(clickHandler!=null) {
+			clickHandler.handle(IfritEventName.COMPONENT_CLICK);
+		}
+	}
+
+	@Override
+	public void onSelect() {
+		currentFrameIdx=1;
+		if(selectHandler!=null) {
+			selectHandler.handle(IfritEventName.COMPONENT_SELECT);
+		}
+		
+	}
+
+	@Override
+	public void setClickHandler(IfritEventHandler handle) {
+		clickHandler = handle;
+	}
+
+	@Override
+	public void setSelectHandler(IfritEventHandler handle) {
+		selectHandler = handle;
+	}
+
+	@Override
+	public void onBlur() {
+		currentFrameIdx=0;
+	}
+
 }

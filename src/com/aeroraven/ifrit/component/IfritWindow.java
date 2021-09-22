@@ -2,15 +2,18 @@ package com.aeroraven.ifrit.component;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import com.aeroraven.ifrit.exception.IfritComponentException;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 
 public class IfritWindow
-extends IfritComponentBase{
+extends IfritComponentBase
+implements IfritComponentAbstractContainer{
 	private HashMap<String,IfritComponentBase> shapeList;
 	public IfritWindow() {
+		isFinal=false;
 		shapeList = new  HashMap<String,IfritComponentBase>();
 	}
 	
@@ -66,9 +69,12 @@ extends IfritComponentBase{
 	}
 
 	@Override
-	public int getLeftMargin() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getLeftMargin() {
+		double leftMargin = 1E+100;
+		for(IfritComponentBase i:shapeList.values()) {
+			leftMargin = Math.min(leftMargin, i.getLeftMargin());
+		}
+		return leftMargin;
 	}
 
 	@Override
@@ -78,6 +84,26 @@ extends IfritComponentBase{
 			srList.add(i);
 		}
 		return srList;
+	}
+
+	@Override
+	public ArrayList<IfritComponentBase> getSortedComponentsByLeftMargin() {
+		ArrayList<IfritComponentBase> r = this.getChildComponents();
+		Collections.sort(r,new Comparator<IfritComponentBase>() {
+			public int compare(IfritComponentBase o1, IfritComponentBase o2) {
+				double r1 = o1.getLeftMargin();
+				double r2 = o2.getLeftMargin();
+				if(r1<r2) {
+					return -1;
+				}else if(r1==r2) {
+					return 0;
+				}else {
+					return 1;
+				}
+			}
+		
+		});
+		return r;
 	}
 
 }

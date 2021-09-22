@@ -125,4 +125,20 @@ extends IfritPrimitiveBase{
 			i.set(1, i.get(1)+y);
 		}
 	}
+	@Override
+	public double getLeftMargin() {
+		double ret = 1E+100;
+		for(IfritVectord i:pointlist) {
+			ret = Math.min(ret, i.get(0));
+		}
+		return ret;
+	}
+	@Override
+	public double getTopMargin() {
+		double ret = 1E+100;
+		for(IfritVectord i:pointlist) {
+			ret = Math.min(ret, i.get(1));
+		}
+		return ret;
+	}
 }

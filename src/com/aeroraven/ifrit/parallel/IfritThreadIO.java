@@ -11,6 +11,7 @@ public class IfritThreadIO
 extends IfritThreadBase{
 	private Thread t;
 	HashMap<String,IfritEventHandler> eventHandlers;
+	IfritEventHandler sceneEventHandler;
 	
 	public IfritThreadIO() {
 		eventHandlers = new HashMap<String,IfritEventHandler>();
@@ -18,6 +19,9 @@ extends IfritThreadBase{
 	
 	public void addEventHandler(String alias,IfritEventHandler x) {
 		eventHandlers.put(alias, x);
+	}
+	public void setSceneEventHandler(IfritEventHandler x) {
+		sceneEventHandler=x;
 	}
 	public void removeEventHandler(String alias) {
 		eventHandlers.remove(alias);
@@ -30,6 +34,9 @@ extends IfritThreadBase{
 			char x=nat.getch();
 			for(String i:eventHandlers.keySet()) {
 				eventHandlers.get(i).handle(IfritEventName.KEYBOARD_PRESS, Integer.valueOf(x));
+			}
+			if(sceneEventHandler!=null) {
+				sceneEventHandler.handle(IfritEventName.KEYBOARD_PRESS, Integer.valueOf(x));
 			}
 		}
 	}

@@ -26,4 +26,6 @@ public interface IfritPrimitiveGeometryInterface {
 	public abstract void setDisplayChar(String e);
 	public abstract String getDisplayChar();
 
+	public abstract double getLeftMargin();
+	public abstract double getTopMargin();
 }

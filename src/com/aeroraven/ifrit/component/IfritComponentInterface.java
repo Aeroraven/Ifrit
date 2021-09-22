@@ -16,6 +16,6 @@ public interface IfritComponentInterface {
 	public abstract void setTotalFrames(int cnt);
 	public abstract void translate2d(double x,double y);
 	
-	public abstract int getLeftMargin();
+	public abstract double getLeftMargin();
 	public abstract ArrayList<IfritComponentBase> getChildComponents();
 }
