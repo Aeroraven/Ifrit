@@ -18,4 +18,6 @@ public interface IfritComponentInterface {
 	
 	public abstract double getLeftMargin();
 	public abstract ArrayList<IfritComponentBase> getChildComponents();
+	public abstract void hide();
+	public abstract void show();
 }
