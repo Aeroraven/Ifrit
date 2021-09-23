@@ -1,7 +1,10 @@
 package com.aeroraven.ifrit.renderer;
 
 import java.util.ArrayList;
+
+import com.aeroraven.ifrit.app.IfritApplication;
 import com.aeroraven.ifrit.component.IfritComponentBase;
+import com.aeroraven.ifrit.exception.IfritWarrantyException;
 
 public class IfritRenderer {
 	private static IfritRenderer instance;
