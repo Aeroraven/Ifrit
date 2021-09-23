@@ -11,6 +11,19 @@ import com.aeroraven.ifrit.misc.IfritMath;
 
 class IfritRasterizationHandler
 extends IfritRenderHandlerBase{
+	private static IfritRasterizationHandler instance;
+	private IfritFrame frameBuffer;
+	private IfritRasterizationHandler() {};
+	IfritFrame newFrame = null;
+	
+	public static IfritRasterizationHandler getInst() {
+		if(instance == null) {
+			instance = new IfritRasterizationHandler();
+			instance.newFrame = new IfritFrame();
+		}
+		return instance;
+	}
+	
 	public void dotRasterizer(IfritFrame output,IfritVectord pt,IfritVectord colvec4,IfritVectord colvec4bg,String dispCh) {
 		int ptX = (int)(double)(pt.get(0));
 		int ptY = (int)(double)(pt.get(1));
@@ -393,7 +406,6 @@ extends IfritRenderHandlerBase{
 		}
 	}
 	public IfritFrame handleComponents(ArrayList<IfritComponentBase> arg,int sW,int sH) {
-		IfritFrame newFrame = new IfritFrame();
 		newFrame.initalize(sW, sH);
 		for(IfritComponentBase i:arg) {
 			ArrayList<IfritPrimitiveBase> primList = i.getPrimitives();

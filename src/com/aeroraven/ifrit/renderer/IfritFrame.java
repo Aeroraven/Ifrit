@@ -1,9 +1,12 @@
 package com.aeroraven.ifrit.renderer;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 class IfritFrame extends IfritFrameBase {
 	public IfritFrame() {
-		pixels = new HashMap<Integer,IfritPixel>();
+		pixels = new ArrayList<IfritPixel>();
 	}
+	protected void finalize() throws Throwable{
+		
+    }
 }

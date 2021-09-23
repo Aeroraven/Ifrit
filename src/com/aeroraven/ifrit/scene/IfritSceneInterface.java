@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface IfritSceneInterface {
 	public abstract void setSceneSize(int w,int h);
 	public abstract IfritVectord getSceneSize();
-	public abstract ArrayList<IfritComponentBase> getSortedComponents();
+	public abstract ArrayList<IfritComponentBase> getChildComponents();
 	public abstract void addComponent(String alias,IfritComponentBase component);
 	public abstract IfritComponentBase getComponent(String alias);
 	public abstract void removeComponent(String alias);

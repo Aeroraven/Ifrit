@@ -12,7 +12,7 @@ public class IfritRenderer {
 		return instance;
 	}
 	public void render(ArrayList<IfritComponentBase> arg,int sW,int sH) {
-		IfritRasterizationHandler rasterizer = new IfritRasterizationHandler();
+		IfritRasterizationHandler rasterizer = IfritRasterizationHandler.getInst();
 		IfritDisplayHandler displayer = IfritDisplayHandler.getInst();
 		IfritFrame renderFrame = rasterizer.handleComponents(arg, sW, sH);
 		displayer.handleFrame(renderFrame);

@@ -14,6 +14,7 @@ public class IfritDemoPlatform {
 	static IfritSprite component = new IfritSprite();
 	static IfritButton btn1 = new IfritButton();
 	static IfritButton btn2 = new IfritButton();
+	static IfritButton btn3 = new IfritButton();
 	
 	static IfritWindow window = new IfritWindow();
 	
@@ -73,7 +74,7 @@ public class IfritDemoPlatform {
 					.createTextWithRectBorder("Selected", 0, 20, 15, 5, 1)
 					.store();
 		btn1.addPrimitive(shapeFactory.getFinalShape(),1);
-		scene.addComponent("2", btn1);
+		window.addComponent("2", btn1);
 		
 		//Btn2
 		btn2.setZDepth(0);
@@ -89,7 +90,27 @@ public class IfritDemoPlatform {
 					.createTextWithRectBorder("Selected", 20, 20, 15, 5, 1)
 					.store();
 		btn2.addPrimitive(shapeFactory.getFinalShape(),1);
-		scene.addComponent("3", btn2);
+		window.addComponent("3", btn2);
+		
+		//Add Window
+		window.setZDepth(1);
+		scene.addComponent("4", window);
+		
+		//Btn3
+		btn3.setZDepth(0);
+		shapeFactory.textBuilder()
+					.setBackColor(0, 0, 255)
+					.setForeColor(255,255, 255)
+					.createTextWithRectBorder("Press ?", 20, 25, 15, 5, 1)
+					.store();
+		btn3.addPrimitive(shapeFactory.getFinalShape(),0);
+		shapeFactory.textBuilder()
+					.setBackColor(0, 255, 0)
+					.setForeColor(255,255, 255)
+					.createTextWithRectBorder("Selected", 20, 25, 15, 5, 1)
+					.store();
+		btn3.addPrimitive(shapeFactory.getFinalShape(),1);
+		scene.addComponent("5", btn3);
 		
 		app.getMediator().addCommand(new IfritCPSwitchRenderScene(scene));
 	}

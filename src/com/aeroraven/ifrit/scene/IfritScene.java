@@ -11,9 +11,9 @@ import com.aeroraven.ifrit.command.IfritCPSetIOSceneEventHandler;
 import com.aeroraven.ifrit.component.IfritComponentAbstractContainer;
 import com.aeroraven.ifrit.component.IfritComponentAbstractSelectable;
 import com.aeroraven.ifrit.component.IfritComponentBase;
+import com.aeroraven.ifrit.component.IfritWindow;
 import com.aeroraven.ifrit.constant.IfritEnvAttribs;
 import com.aeroraven.ifrit.constant.IfritEventName;
-import com.aeroraven.ifrit.core.IfritDefs;
 import com.aeroraven.ifrit.event.IfritEventHandler;
 import com.aeroraven.ifrit.renderer.*;
 
@@ -57,9 +57,9 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 		
 	}
 	public void render() {
-		renderer.render(getSortedComponents(), sceneW, sceneH);
+		renderer.render(getChildComponents(), sceneW, sceneH);
 	}
-	public ArrayList<IfritComponentBase> getSortedComponents(){
+	public ArrayList<IfritComponentBase> getChildComponents(){
 		ArrayList<IfritComponentBase> srList = new ArrayList<IfritComponentBase>();
 		for(IfritComponentBase i:comList.values()) {
 			srList.add(i);
@@ -69,7 +69,7 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 	}
 	
 	public void findTopCompContainer() {
-		ArrayList<IfritComponentBase> list = getSortedComponents();
+		ArrayList<IfritComponentBase> list = getChildComponents();
 		boolean findReplacement = false;
 		IfritComponentBase newSelection = null;
 		for(int i=list.size()-1;i>=0;i--) {
@@ -79,16 +79,32 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 				break;
 			}
 		}
+		IfritWindow sel=(IfritWindow)newSelection;
 		if(newSelection!=null) {
 			while(true) {
 				boolean doRecursion = false;
-				
+				ArrayList<IfritComponentBase> lst = sel.getChildComponents();
+				Collections.sort(lst);
+				for(int i=lst.size()-1;i>=0;i--) {
+					if(lst.get(i) instanceof IfritComponentAbstractContainer && lst.get(i).isDisabled()==false) {
+						doRecursion=true;
+						sel=(IfritWindow) list.get(i);
+						break;
+					}
+				}
+				if(doRecursion==false) {
+					break;
+				}
 			}
+			activeContainer = sel;
+		}else {
+			activeContainer = this;
 		}
+		
 	}
 	
 	public ArrayList<IfritComponentBase> getSortedComponentsByLeftMargin() {
-		ArrayList<IfritComponentBase> r = this.getSortedComponents();
+		ArrayList<IfritComponentBase> r = activeContainer.getChildComponents();
 		Collections.sort(r,new Comparator<IfritComponentBase>() {
 			public int compare(IfritComponentBase o1, IfritComponentBase o2) {
 				double r1 = o1.getLeftMargin();
@@ -108,7 +124,7 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 
 	
 	private synchronized void updateActiveComs() {
-		activeContainer = this;
+		findTopCompContainer();
 		activeContainerComs = this.getSortedComponentsByLeftMargin();
 		Iterator<IfritComponentBase> iterator = activeContainerComs.iterator();
 		while(iterator.hasNext()) {

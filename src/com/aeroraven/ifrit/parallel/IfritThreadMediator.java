@@ -42,6 +42,9 @@ implements Runnable{
 		//Create IO Thread
 		addCommand(new IfritCPThreadCreate(IfritDefs.IfritIOThreadName,new IfritThreadIO()));
 		addCommand(new IfritCPThreadStart(IfritDefs.IfritIOThreadName));
+		//Create IO Thread
+		addCommand(new IfritCPThreadCreate(IfritDefs.IfritGCThreadName,new IfritThreadGC()));
+		addCommand(new IfritCPThreadStart(IfritDefs.IfritGCThreadName));
 	}
 	 
 	@Override

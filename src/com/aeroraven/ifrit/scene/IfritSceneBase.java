@@ -16,7 +16,7 @@ implements IfritSceneInterface{
 	public IfritVectord getSceneSize() {
 		return new IfritVectord((double)sceneW,(double)sceneH);
 	}
-	public abstract ArrayList<IfritComponentBase> getSortedComponents();
+	public abstract ArrayList<IfritComponentBase> getChildComponents();
 	public void addComponent(String alias,IfritComponentBase component) {
 		comList.put(alias, component);
 	}
