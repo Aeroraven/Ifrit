@@ -28,6 +28,9 @@ implements IfritComponentAbstractSelectable{
 	
 	public ArrayList<IfritPrimitiveBase> getPrimitives(){
 		ArrayList<IfritPrimitiveBase> ret = new ArrayList<IfritPrimitiveBase>();
+		if(isVisible()==false) {
+			return  new ArrayList<IfritPrimitiveBase>();
+		}
 		for(IfritPrimitiveBase i:shapeList.get(currentFrameIdx)) {
 			ret.add(i);
 		}

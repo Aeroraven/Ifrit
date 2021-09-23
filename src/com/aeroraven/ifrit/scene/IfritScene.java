@@ -67,6 +67,26 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 		Collections.sort(srList);
 		return srList;
 	}
+	
+	public void findTopCompContainer() {
+		ArrayList<IfritComponentBase> list = getSortedComponents();
+		boolean findReplacement = false;
+		IfritComponentBase newSelection = null;
+		for(int i=list.size()-1;i>=0;i--) {
+			if(list.get(i) instanceof IfritComponentAbstractContainer && list.get(i).isDisabled()==false) {
+				findReplacement=true;
+				newSelection=list.get(i);
+				break;
+			}
+		}
+		if(newSelection!=null) {
+			while(true) {
+				boolean doRecursion = false;
+				
+			}
+		}
+	}
+	
 	public ArrayList<IfritComponentBase> getSortedComponentsByLeftMargin() {
 		ArrayList<IfritComponentBase> r = this.getSortedComponents();
 		Collections.sort(r,new Comparator<IfritComponentBase>() {
@@ -108,5 +128,10 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 		updateActiveComs();
 		IfritApplication app = IfritApplication.createApplication();
 		app.getMediator().addCommand(new IfritCPSetIOSceneEventHandler((IfritEventHandler)this::selectableFocusHandler));
+	}
+	@Override
+	public void onActivationHooked() {
+		// TODO Auto-generated method stub
+		
 	}
 }

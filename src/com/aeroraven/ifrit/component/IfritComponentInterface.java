@@ -13,11 +13,15 @@ public interface IfritComponentInterface {
 	public abstract void addPrimitive(IfritPrimitiveBase x) throws IfritComponentException;
 	public abstract void addPrimitive(IfritPrimitiveBase x,int frameIdx) throws IfritComponentException;
 	public abstract void frameAdvance();
-	public abstract void setTotalFrames(int cnt);
+	public abstract void setTotalFrames(int cnt) throws IfritComponentException;
 	public abstract void translate2d(double x,double y);
 	
 	public abstract double getLeftMargin();
 	public abstract ArrayList<IfritComponentBase> getChildComponents();
 	public abstract void hide();
 	public abstract void show();
+	public abstract boolean isVisible();
+	public abstract void enable();
+	public abstract void disable();
+	public abstract boolean isDisabled();
 }

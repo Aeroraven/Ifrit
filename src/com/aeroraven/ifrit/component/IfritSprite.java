@@ -26,6 +26,9 @@ implements IfritSpriteNotifyInterface{
 	public ArrayList<IfritPrimitiveBase> getPrimitives(){
 		ArrayList<IfritPrimitiveBase> ret = new ArrayList<IfritPrimitiveBase>();
 		for(IfritPrimitiveBase i:shapeList.get(currentFrameIdx)) {
+			if(isVisible()==false) {
+				return  new ArrayList<IfritPrimitiveBase>();
+			}
 			ret.add(i);
 		}
 		Collections.sort(ret);

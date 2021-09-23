@@ -20,6 +20,9 @@ implements IfritComponentAbstractContainer{
 	@Override
 	public ArrayList<IfritPrimitiveBase> getPrimitives() {
 		ArrayList<IfritComponentBase> srList = new ArrayList<IfritComponentBase>();
+		if(isVisible()==false) {
+			return  new ArrayList<IfritPrimitiveBase>();
+		}
 		for(IfritComponentBase i:shapeList.values()) {
 			srList.add(i);
 		}
@@ -57,8 +60,8 @@ implements IfritComponentAbstractContainer{
 	}
 
 	@Override
-	public void setTotalFrames(int cnt) {
-		return ;
+	public void setTotalFrames(int cnt) throws IfritComponentException {
+		throw new IfritComponentException("Window component does not support animation frames");
 	}
 
 	@Override
@@ -104,6 +107,12 @@ implements IfritComponentAbstractContainer{
 		
 		});
 		return r;
+	}
+
+	@Override
+	public void onActivationHooked() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

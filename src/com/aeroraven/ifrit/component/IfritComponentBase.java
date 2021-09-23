@@ -5,6 +5,7 @@ implements IfritComponentInterface,Comparable<IfritComponentBase>{
 	private int zdepth;
 	protected boolean isFinal;
 	protected boolean isHidden=false;
+	protected boolean isDisabled=false;
 	public void setZDepth(int x) {
 		zdepth=x;
 	}
@@ -25,5 +26,18 @@ implements IfritComponentInterface,Comparable<IfritComponentBase>{
 	}
 	public void show() {
 		isHidden=false;
+	}
+	public  boolean isVisible() {
+		return !isHidden;
+	}
+	public  void enable() {
+		isDisabled = false;
+	}
+	
+	public  void disable() {
+		isDisabled = true;
+	}
+	public  boolean isDisabled() {
+		return isDisabled;
 	}
 }
