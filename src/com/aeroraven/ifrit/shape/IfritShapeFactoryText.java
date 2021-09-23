@@ -83,6 +83,35 @@ extends IfritShapeFactoryBase{
 		}
 		return this;
 	}
+	public IfritShapeFactoryText createTextWithRectBack(String text,int offsetX,int offsetY,int w,int h,int zdepth) throws Exception {
+		builder.builderBegin();
+		int pixelsLen=0;
+		for(int i=0;i<text.length();i++) {
+			pixelsLen++;
+			if(text.substring(i,i+1).getBytes().length==1) {
+				if(i+1<text.length()) {
+					if(text.substring(i+1,i+2).getBytes().length==1) {
+						i++;
+					}
+				}
+			}
+		}
+		//Background
+		for(int i=0;i<w;i++) {
+			for(int j=0;j<h;j++) {
+				builder.setConfig("setx", i+offsetX);
+				builder.setConfig("sety", j+offsetY);
+				builder.addFromString("  ", zdepth);
+			}
+		}
+		//Central Text
+		int wordX=offsetX;
+		int wordY=offsetY;
+		builder.setConfig("setx", wordX);
+		builder.setConfig("sety", wordY);
+		builder.addFromString(text, zdepth);
+		return this;
+	}
 	public void store() {
 		parent.setCache(builder.getResult());
 	}

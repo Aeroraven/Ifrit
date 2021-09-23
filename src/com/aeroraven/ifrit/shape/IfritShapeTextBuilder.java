@@ -24,20 +24,28 @@ extends IfritShapeBuilderBase{
 	}
 	public void addFromString(String arg,int zdepth){
 		int counter=0;
+		int ycounter=0;
 		if(syncWithZdepth) {
 			product.setZDepth(zdepth);
 		}
 		for(int i=0;i<arg.length();i++) {
 			String e=arg.substring(i,i+1);
-			if(e.getBytes().length==1){
+			if(e.getBytes().length==1&&e.equals("\n")==false){
 				if(i+1<arg.length()) {
 					if(arg.substring(i+1,i+2).getBytes().length==1) {
-						e=arg.substring(i,i+2);
-						i++;
+						if(arg.substring(i+1,i+2).equals("\n")==false) {
+							e=arg.substring(i,i+2);
+							i++;
+						}
+						
 					}
 				}
+			}else if(e.equals("\n")==true) {
+				counter=0;
+				ycounter++;
+				continue;
 			}
-			IfritPrimitiveDot tmp=new IfritPrimitiveDot(offsetx+counter,offsety);
+			IfritPrimitiveDot tmp=new IfritPrimitiveDot(offsetx+counter,offsety+ycounter);
 			counter+=1;
 			tmp.setZDepth(zdepth);
 			tmp.setDisplayChar(e);

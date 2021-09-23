@@ -43,6 +43,12 @@ public class IfritDemoPlatform {
 							IfritVectord.val(24.,6.), 0)
 					.store();
 		component.addPrimitive(shapeFactory.getFinalShape());
+		shapeFactory.textBuilder()
+					.setBackColor(255, 255, 0)
+					.setForeColor(0,0, 0)
+					.createTextWithRectBack("Hello\nWorld", 0, 0, 6, 6, 1)
+					.store();
+		component.addPrimitive(shapeFactory.getFinalShape());
 		
 		//Add a Circle
 		shapeFactory.primitiveBuilder()
