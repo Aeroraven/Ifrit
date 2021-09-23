@@ -40,6 +40,12 @@ implements IfritComponentAbstractContainer,IfritSceneRenderInterface{
 		if(((Integer)(params[0])).equals(app.getEnv().getAttr(IfritEnvAttribs.KEYCODE_RIGHT))) {
 			activeContainerComsIdx = (activeContainerComsIdx+1+activeContainerComs.size())%activeContainerComs.size();
 		}
+		if(((Integer)(params[0])).equals(app.getEnv().getAttr(IfritEnvAttribs.KEYCODE_ENTER))) {
+			if(activeContainerComs.size()>0) {
+				IfritComponentAbstractSelectable xt = (IfritComponentAbstractSelectable)activeContainerComs.get(activeContainerComsIdx);
+				xt.onClick();
+			}
+		}
 		if(activeContainerComs.size()>0) {
 			IfritComponentAbstractSelectable xt = (IfritComponentAbstractSelectable)activeContainerComs.get(activeContainerComsIdx);
 			xt.onSelect();

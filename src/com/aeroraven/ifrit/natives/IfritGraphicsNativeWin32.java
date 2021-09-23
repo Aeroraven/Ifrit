@@ -1,5 +1,7 @@
 package com.aeroraven.ifrit.natives;
 
+import java.io.IOException;
+
 import com.aeroraven.ifrit.constant.IfritCursorMode;
 import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 
@@ -9,11 +11,18 @@ extends IfritGraphicsNativeGeneral{
 	
 	@Override
 	public void setWindowSize(int x, int y) {
-		
+		Process tx;
+		try {
+			tx = new ProcessBuilder("cmd", "/C", "mode con cols="+y+" lines="+x).inheritIO().start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tx= null;
+		System.gc();
 	}
 
 	@Override
-	public void init() {
+	public void init() throws IOException {
 		hstdIn = IfritConsoleInterface.ICI_GetStdHandle(-10);
 		int modeIn = IfritConsoleInterface.ICI_GetConsoleMode(hstdIn);
 		IfritConsoleInterface.ICI_SetConsoleMode(hstdIn, modeIn&(~0x0040));
@@ -29,6 +38,7 @@ extends IfritGraphicsNativeGeneral{
 		setCursorMode(IfritCursorMode.HIDDEN);
 		setConsoleTitle("Demo ");
 		cls();
+		IfritConsoleInterface.ICI_DisableConsoleScale();
 	}
 
 	@Override
@@ -39,6 +49,12 @@ extends IfritGraphicsNativeGeneral{
 	@Override
 	public char kbhit() {
 		return (char)IfritConsoleInterface.ICI_Kbhit();
+	}
+	@Override
+	public void cls() throws IOException {
+		Process x = new ProcessBuilder("cmd", "/C", "cls").inheritIO().start();
+		x= null;
+		System.gc();
 	}
 	
 }

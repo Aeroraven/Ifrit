@@ -25,6 +25,12 @@ public final class IfritGlobal {
 	public int getScreenHeight() {
 		return 1000;
 	}
+	public int getWindowWidth() {
+		return 170;
+	}
+	public int getWindowHeight() {
+		return 60;
+	}
 	public int getFrameUpdateInterval() {
 		return frameUpdateRate;
 	}

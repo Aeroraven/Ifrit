@@ -41,6 +41,7 @@ implements IfritComponentAbstractSelectable{
 	@Override
 	public void addPrimitive(IfritPrimitiveBase x) {
 		shapeList.get(0).add(x);
+		shapeList.get(1).add(x);
 	}
 	
 	@Override
@@ -108,6 +109,7 @@ implements IfritComponentAbstractSelectable{
 	@Override
 	public void setClickHandler(IfritEventHandler handle) {
 		clickHandler = handle;
+		
 	}
 
 	@Override

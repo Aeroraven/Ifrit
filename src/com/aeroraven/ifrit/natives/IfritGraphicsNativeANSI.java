@@ -1,5 +1,7 @@
 package com.aeroraven.ifrit.natives;
 
+import java.io.IOException;
+
 import com.aeroraven.ifrit.constant.IfritCursorMode;
 import com.aeroraven.ifrit.nativelib.IfritConsoleInterface;
 
@@ -14,7 +16,7 @@ extends IfritGraphicsNativeGeneral{
 	}
 
 	@Override
-	public void init() {
+	public void init() throws IOException {
 		setCursorMode(IfritCursorMode.HIDDEN);
 		cls();
 	}

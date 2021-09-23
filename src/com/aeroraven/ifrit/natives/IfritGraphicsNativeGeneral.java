@@ -1,5 +1,7 @@
 package com.aeroraven.ifrit.natives;
 
+import java.io.IOException;
+
 import com.aeroraven.ifrit.constant.IfritColor16;
 import com.aeroraven.ifrit.constant.IfritCursorMode;
 import com.aeroraven.ifrit.misc.IfritEnumConverter;
@@ -33,7 +35,7 @@ extends IfritGraphicsNativeBase{
 	public abstract void setWindowSize(int x, int y);
 
 	@Override
-	public abstract void init();
+	public abstract void init() throws IOException;
 
 	@Override
 	public abstract char getch(Byte... ignoreList);
@@ -42,7 +44,7 @@ extends IfritGraphicsNativeBase{
 	public abstract char kbhit();
 
 	@Override
-	public void cls() {
+	public void cls() throws IOException {
 		System.out.print("\033[H\033[2J");
 		
 	}

@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #endif
 
-#define IFRIT_INVALID_RETURN 0
+#define IFRIT_INVALID_RETURN 1950641
 #define IFRIT_DEBUG_MODE true
 #define IFRIT_PROMPT(x) printf("IFRIT NATIVE ERROR:%s\n",x);
 #define IFRIT_DEBUG_PROMPT(x) if(IFRIT_DEBUG_MODE) IFRIT_PROMPT(x)
@@ -201,6 +201,16 @@ JNIEXPORT jint JNICALL Java_com_aeroraven_ifrit_nativelib_IfritConsoleInterface_
 	unsigned long mode;
 	GetConsoleMode((HANDLE)hStd,&mode);
 	return mode;
+#endif
+	IFRIT_DEBUG_PROMPT(IFRIT_WARN_UNSUPPORTED_OS);
+	return (jint)IFRIT_INVALID_RETURN;
+}
+
+JNIEXPORT jint JNICALL Java_com_aeroraven_ifrit_nativelib_IfritConsoleInterface_ICI_1DisableConsoleScale
+(JNIEnv* jenv, jclass jcl) {
+#ifdef IFRIT_WINDOWS
+	SetWindowLongPtrA(GetConsoleWindow(), GWL_STYLE, GetWindowLongPtrA(GetConsoleWindow(), GWL_STYLE) & ~WS_SIZEBOX & ~WS_MAXIMIZEBOX & ~WS_MINIMIZEBOX);
+	return 1950641;
 #endif
 	IFRIT_DEBUG_PROMPT(IFRIT_WARN_UNSUPPORTED_OS);
 	return (jint)IFRIT_INVALID_RETURN;

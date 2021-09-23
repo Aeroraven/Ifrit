@@ -1,5 +1,6 @@
 package com.aeroraven.ifrit.natives;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import com.aeroraven.ifrit.constant.*;
@@ -24,6 +25,7 @@ public class IfritEnvironmentAdapter{
 			envAttr.put(IfritEnvAttribs.KEYCODE_DOWN,Integer.valueOf(304));
 			envAttr.put(IfritEnvAttribs.KEYCODE_RIGHT,Integer.valueOf(301));
 			envAttr.put(IfritEnvAttribs.KEYCODE_LEFT,Integer.valueOf(299));
+			envAttr.put(IfritEnvAttribs.KEYCODE_ENTER,Integer.valueOf(13));
 			
 			ostype = IfritOSType.WINDOWS;
 		}else {
@@ -33,10 +35,14 @@ public class IfritEnvironmentAdapter{
 			envAttr.put(IfritEnvAttribs.KEYCODE_DOWN,Integer.valueOf(304));
 			envAttr.put(IfritEnvAttribs.KEYCODE_RIGHT,Integer.valueOf(301));
 			envAttr.put(IfritEnvAttribs.KEYCODE_LEFT,Integer.valueOf(299));
-			
+			envAttr.put(IfritEnvAttribs.KEYCODE_ENTER,Integer.valueOf(13));
 			ostype = IfritOSType.OTHER;
 		}
-		cgapi.init();
+		try {
+			cgapi.init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public IfritGraphicsNativeBase getAPI() {
 		return cgapi;

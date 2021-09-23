@@ -21,4 +21,5 @@ public class IfritConsoleInterface {
 	public static native int ICI_SetConsoleScreenBufferSize(long hConsoleOutput,int w,int h);
 	public static native int ICI_GetConsoleMode(long hConsoleHandle);
 	public static native int ICI_SetConsoleMode(long hConsoleHandle,int mode);
+	public static native int ICI_DisableConsoleScale();
 }

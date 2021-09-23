@@ -386,7 +386,6 @@ extends IfritRenderHandlerBase{
 			}
 		}
 		if(renderMode==IfritRenderMode.POLYGON) {
-			//System.out.println("POLYTON!!");
 			for(IfritPrimitiveBase i:shape) {
 				ArrayList<IfritVectord> vx = i.getVertices();
 				polygonRasterizer(output,vx,i.getForeColor4d(),i.getBackColor4d(),i.getDisplayChar());
