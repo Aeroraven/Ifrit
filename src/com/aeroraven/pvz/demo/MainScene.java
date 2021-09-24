@@ -42,7 +42,7 @@ public class MainScene {
 		app.setTitle("Plants vs. Zombies");
 		
 		//=====这里换成自己想要的音乐文件=====
-		app.addAudioFile("wendy.wav");
+		app.addAudioFile("weedy.wav");
 		//=================================
 		
 		scene.setSceneSize(1000, 400);
