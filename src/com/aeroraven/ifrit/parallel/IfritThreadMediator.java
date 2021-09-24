@@ -42,9 +42,12 @@ implements Runnable{
 		//Create IO Thread
 		addCommand(new IfritCPThreadCreate(IfritDefs.IfritIOThreadName,new IfritThreadIO()));
 		addCommand(new IfritCPThreadStart(IfritDefs.IfritIOThreadName));
-		//Create IO Thread
+		//Create GC Thread
 		addCommand(new IfritCPThreadCreate(IfritDefs.IfritGCThreadName,new IfritThreadGC()));
 		addCommand(new IfritCPThreadStart(IfritDefs.IfritGCThreadName));
+		//Create Audio Thread
+		addCommand(new IfritCPThreadCreate(IfritDefs.IfritAudioThreadName,new IfritThreadAudio()));
+		addCommand(new IfritCPThreadStart(IfritDefs.IfritAudioThreadName));
 	}
 	 
 	@Override

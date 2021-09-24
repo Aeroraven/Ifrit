@@ -37,8 +37,14 @@ public class MainScene {
 	}
 	public void runApp() throws Exception {
 		app = IfritApplication.createApplication();
+		
 		app.getGlobal().setFrameUpdateInterval(10);
 		app.setTitle("Plants vs. Zombies");
+		
+		//=====这里换成自己想要的音乐文件=====
+		app.addAudioFile("wendy.wav");
+		//=================================
+		
 		scene.setSceneSize(1000, 400);
 		
 		shapeFactory.textBuilder().setBackColor(0, 0, 0).setForeColor(255, 255, 0).createTextContainer(MainString, 20, 10, 0).store();
@@ -62,6 +68,7 @@ public class MainScene {
 		exitButton.setClickHandler((IfritEventHandler)this::quitGame);
 		
 		app.setRenderScene(scene);
+		
 	}
 
 }

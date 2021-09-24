@@ -1,5 +1,6 @@
 package com.aeroraven.ifrit.app;
 
+import com.aeroraven.ifrit.command.IfritCPAddAudio;
 import com.aeroraven.ifrit.command.IfritCPSwitchRenderScene;
 import com.aeroraven.ifrit.core.IfritGlobal;
 import com.aeroraven.ifrit.natives.IfritEnvironmentAdapter;
@@ -39,5 +40,8 @@ public final class IfritApplication {
 	}
 	private void adjustWindowSize() {
 		getEnv().getAPI().setWindowSize(getGlobal().getWindowHeight(), getGlobal().getWindowWidth());
+	}
+	public void addAudioFile(String fileName) {
+		getMediator().addCommand(new IfritCPAddAudio(fileName));
 	}
 }
