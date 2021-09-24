@@ -8,6 +8,7 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.AudioSystem;
 
 public class IfritAudio {
+	//From web
 	public static void playMusic(String e) throws Exception {
 		File file = new File(e);
 		AudioInputStream am;

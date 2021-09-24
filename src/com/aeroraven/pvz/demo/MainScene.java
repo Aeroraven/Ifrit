@@ -42,6 +42,8 @@ public class MainScene {
 		app.setTitle("Plants vs. Zombies");
 		
 		//=====这里换成自己想要的音乐文件=====
+		//(按顺序播放)
+		app.addAudioFile("red.wav");
 		app.addAudioFile("weedy.wav");
 		//=================================
 		
