@@ -44,7 +44,7 @@ public class MainScene {
 		//=====这里换成自己想要的音乐文件=====
 		//(按顺序播放)
 		app.addAudioFile("red.wav");
-		app.addAudioFile("weedy.wav");
+		//app.addAudioFile("weedy.wav");
 		//=================================
 		
 		scene.setSceneSize(1000, 400);
@@ -70,7 +70,6 @@ public class MainScene {
 		exitButton.setClickHandler((IfritEventHandler)this::quitGame);
 		
 		app.setRenderScene(scene);
-		
 	}
 
 }
