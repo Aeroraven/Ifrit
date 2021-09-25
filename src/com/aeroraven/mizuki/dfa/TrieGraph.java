@@ -38,7 +38,7 @@ public class TrieGraph { //DFA
 	}
 	public TrieGraphNode appendTerminalNode(TrieGraphNode node, String seqCh,Object finalSign, int prefetchRetrace) {
 		TrieGraphNode x = new TrieGraphNode();
-		x.prefectch=prefetchRetrace;
+		x.prefetch=prefetchRetrace;
 		x.isFinal=true;
 		x.finalSign=finalSign;
 		node.child.put(seqCh, x);

@@ -4,7 +4,7 @@ import com.aeroraven.mizuki.dfa.*;
 
 public class GrammarScannerPreset
 extends GrammarScanner{
-	void loadPreset() {
+	public void loadPreset() {
 		TrieGraphNode x;
 		//Integer Scanner
 		x = this.locateNode("");
@@ -40,6 +40,5 @@ extends GrammarScanner{
 		x = this.appendTerminalNode(x, "\r", "Neglectable", 0);
 		x = this.locateNode("");
 		x = this.appendTerminalNode(x, " ", "Neglectable", 0);
-		
 	}
 }
