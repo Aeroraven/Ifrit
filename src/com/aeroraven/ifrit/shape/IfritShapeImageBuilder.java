@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.*;
 
+/**
+ * @deprecated
+ */
 class IfritShapeImageBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;

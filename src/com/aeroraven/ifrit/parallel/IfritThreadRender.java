@@ -5,13 +5,13 @@ import java.util.HashMap;
 import com.aeroraven.ifrit.constant.IfritEventName;
 import com.aeroraven.ifrit.core.IfritGlobal;
 import com.aeroraven.ifrit.event.IfritEventHandler;
+import com.aeroraven.ifrit.scene.IfritNullScene;
 import com.aeroraven.ifrit.scene.IfritScene;
 
 public final class IfritThreadRender 
 extends IfritThreadBase{
-	private Thread t;
-	private volatile IfritScene activeScene = null;
-	private Object mutex=new Object();
+	private volatile IfritScene activeScene = new IfritNullScene();
+	private final Object mutex=new Object();
 	
 	HashMap<String,IfritEventHandler> eventHandlers;
 	
@@ -59,7 +59,7 @@ extends IfritThreadBase{
 	}
 	
 	public void start() {
-		t = new Thread(this,"IfritRendererThread");
+		Thread t = new Thread(this, "IfritRendererThread");
 		t.start();
 	}
 }

@@ -11,6 +11,12 @@ public class TrieGraph { //DFA
 		for(int i=0;i<pattern.length();i++) {
 			if(cur.child.get("any")!=null&&i+1<pattern.length()) {
 				cur = cur.child.get("any");
+			}else if(cur.child.get("numoralp")!=null&&
+					(Character.isDigit(pattern.substring(i,i+1).charAt(0))||Character.isAlphabetic(pattern.substring(i,i+1).charAt(0)))) {
+					cur = cur.child.get("numoralp");
+			}else if(cur.child.get("nonnumoralp")!=null&&
+					!(Character.isDigit(pattern.substring(i,i+1).charAt(0))||Character.isAlphabetic(pattern.substring(i,i+1).charAt(0)))) {
+				cur = cur.child.get("nonnumoralp");
 			}else if(cur.child.get("num")!=null&&Character.isDigit(pattern.substring(i,i+1).charAt(0))) {
 				cur = cur.child.get("num");
 			}else if(cur.child.get("nonnum")!=null&&!Character.isDigit(pattern.substring(i,i+1).charAt(0))) {

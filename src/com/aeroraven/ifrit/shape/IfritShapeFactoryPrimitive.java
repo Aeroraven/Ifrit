@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import com.aeroraven.ifrit.core.IfritVectord;
 
+/**
+ * @deprecated
+ */
 public class IfritShapeFactoryPrimitive
 extends IfritShapeFactoryBase{
 	IfritShapeFactory parent;

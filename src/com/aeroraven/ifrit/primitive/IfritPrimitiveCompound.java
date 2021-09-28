@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
+
+import java.util.Arrays;
 import java.util.Collections;
 
 public class IfritPrimitiveCompound 
-extends IfritPrimitiveBase {
+extends IfritPrimitiveBase
+implements Cloneable{
 	protected ArrayList<IfritPrimitiveBase> child;
 	
 	public IfritPrimitiveCompound() {
@@ -17,9 +20,7 @@ extends IfritPrimitiveBase {
 	}
 	public IfritPrimitiveCompound(IfritPrimitiveBase ...args) {
 		child = new ArrayList<IfritPrimitiveBase>();
-		for(IfritPrimitiveBase i:args) {
-			child.add(i);
-		}
+		child.addAll(Arrays.asList(args));
 		this.isFinal=false;
 		this.renderMode=IfritRenderMode.COMPOUND;
 	}
@@ -120,5 +121,15 @@ extends IfritPrimitiveBase {
 			topMargin = Math.min(topMargin, i.getTopMargin());
 		}
 		return topMargin;
+	}
+
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveCompound clone = (IfritPrimitiveCompound) super.clone();
+		clone.child = new ArrayList<>();
+		for(IfritPrimitiveBase i:child) {
+			clone.child.add(i.clone());
+		}
+		return clone;
 	}
 }

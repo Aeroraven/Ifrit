@@ -7,7 +7,8 @@ import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.misc.IfritMath;
 
 public final class IfritPrimitiveRound
-extends IfritPrimitiveBase{
+extends IfritPrimitiveBase
+implements Cloneable{
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	
@@ -153,5 +154,12 @@ extends IfritPrimitiveBase{
 	public double getTopMargin() {
 		double radius = IfritMath.getEculideanDist(pointlist.get(0), pointlist.get(1));
 		return pointlist.get(0).get(1)-radius;
+	}
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveRound clone = (IfritPrimitiveRound) super.clone();
+		clone.colvec4 = colvec4.getDuplicate();
+		clone.colvec4bg = colvec4.getDuplicate();
+		return clone;
 	}
 }

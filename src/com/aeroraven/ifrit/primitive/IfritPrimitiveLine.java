@@ -5,7 +5,8 @@ import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
 public final class IfritPrimitiveLine
-extends IfritPrimitiveBase {
+extends IfritPrimitiveBase
+implements Cloneable{
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	
@@ -114,11 +115,7 @@ extends IfritPrimitiveBase {
 		
 	}
 	public  ArrayList<IfritVectord> getVertices(){
-		ArrayList<IfritVectord> ret = new ArrayList<IfritVectord>();
-		for(IfritVectord i:pointlist) {
-			ret.add(i);
-		}
-		return ret;
+		return new ArrayList<IfritVectord>(pointlist);
 	}
 	public void setDisplayChar(String e) {
 		dispChar = new String(e);
@@ -140,5 +137,12 @@ extends IfritPrimitiveBase {
 	@Override
 	public double getTopMargin() {
 		return Math.min(pointlist.get(0).get(1), pointlist.get(1).get(1));
+	}
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveLine clone = (IfritPrimitiveLine) super.clone();
+		clone.colvec4 = colvec4.getDuplicate();
+		clone.colvec4bg = colvec4.getDuplicate();
+		return clone;
 	}
 }

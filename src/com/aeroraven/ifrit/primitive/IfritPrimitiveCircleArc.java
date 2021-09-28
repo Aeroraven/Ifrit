@@ -5,9 +5,16 @@ import java.util.ArrayList;
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.misc.IfritMath;
-
+/**
+ * 图元:完整圆弧类 <br/>
+ * 使用: 组合模式 Composite <br/>
+ * 支持: 原型模式 Prototype <br/>
+ * @author 1950641 hzw / Aeroraven
+ * @see com.aeroraven.ifrit.primitive.IfritPrimitiveBase
+ */
 public final class IfritPrimitiveCircleArc
-extends IfritPrimitiveBase{
+extends IfritPrimitiveBase
+implements Cloneable{
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	
@@ -46,8 +53,7 @@ extends IfritPrimitiveBase{
 		double r=colvec4.get(0);
 		double g=colvec4.get(1);
 		double b=colvec4.get(2);
-		IfritVectord res = new IfritVectord(r,g,b);
-		return res;
+		return new IfritVectord(r,g,b);
 	}
 	public void setForeColor3d(IfritVectord color3d) {
 		double r=color3d.get(0);
@@ -60,8 +66,7 @@ extends IfritPrimitiveBase{
 		double g=colvec4.get(1);
 		double b=colvec4.get(2);
 		double a=colvec4.get(3);
-		IfritVectord res = new IfritVectord(r,g,b,a);
-		return res;
+		return new IfritVectord(r,g,b,a);
 	}
 	public void setForeColor4d(IfritVectord color4d) {
 		double r=color4d.get(0);
@@ -75,8 +80,7 @@ extends IfritPrimitiveBase{
 		double r=colvec4bg.get(0);
 		double g=colvec4bg.get(1);
 		double b=colvec4bg.get(2);
-		IfritVectord res = new IfritVectord(r,g,b);
-		return res;
+		return new IfritVectord(r,g,b);
 	}
 	public void setBackColor3d(IfritVectord color3d) {
 		double r=color3d.get(0);
@@ -89,8 +93,7 @@ extends IfritPrimitiveBase{
 		double g=colvec4bg.get(1);
 		double b=colvec4bg.get(2);
 		double a=colvec4bg.get(3);
-		IfritVectord res = new IfritVectord(r,g,b,a);
-		return res;
+		return new IfritVectord(r,g,b,a);
 	}
 	public void setBackColor4d(IfritVectord color4d) {
 		double r=color4d.get(0);
@@ -126,11 +129,7 @@ extends IfritPrimitiveBase{
 		
 	}
 	public  ArrayList<IfritVectord> getVertices(){
-		ArrayList<IfritVectord> ret = new ArrayList<IfritVectord>();
-		for(IfritVectord i:pointlist) {
-			ret.add(i);
-		}
-		return ret;
+		return new ArrayList<IfritVectord>(pointlist);
 	}
 	public void setDisplayChar(String e) {
 		dispChar = new String(e);
@@ -154,5 +153,13 @@ extends IfritPrimitiveBase{
 	public double getTopMargin() {
 		double radius = IfritMath.getEculideanDist(pointlist.get(0), pointlist.get(1));
 		return pointlist.get(0).get(1)-radius;
+	}
+
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveCircleArc clone = (IfritPrimitiveCircleArc) super.clone();
+		clone.colvec4 = colvec4.getDuplicate();
+		clone.colvec4bg = colvec4.getDuplicate();
+		return clone;
 	}
 }

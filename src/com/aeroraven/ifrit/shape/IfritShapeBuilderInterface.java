@@ -4,6 +4,9 @@ import java.util.*;
 import com.aeroraven.ifrit.core.*;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveCompound;
 
+/**
+ * @deprecated
+ */
 public interface IfritShapeBuilderInterface {
 	void builderBegin();
 	void addFromString(String arg,int zdepth) throws Exception;

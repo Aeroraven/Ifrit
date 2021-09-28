@@ -5,7 +5,10 @@ import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.core.*;
 import java.util.ArrayList;
 
-class IfritPrimitiveBuilder
+/**
+ * @deprecated
+ */
+public class IfritPrimitiveBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;
 	String builderMode;

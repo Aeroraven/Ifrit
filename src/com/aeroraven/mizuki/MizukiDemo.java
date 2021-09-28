@@ -2,7 +2,7 @@ package com.aeroraven.mizuki;
 
 import java.util.ArrayList;
 
-import com.aeroraven.mizuki.grammar.*;
+import com.aeroraven.mizuki.scanner.*;
 
 public class MizukiDemo {
 	public static void main(String[] args) throws Exception {

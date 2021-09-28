@@ -1,8 +1,12 @@
 package com.aeroraven.ifrit.core;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
-public class IfritVector<T> extends IfritVectorBase<T> {
+
+public class IfritVector<T>
+extends IfritVectorBase<T>
+implements Cloneable{
 	@SafeVarargs
 	public IfritVector(T ... init_args){
 		super(init_args);
@@ -21,5 +25,11 @@ public class IfritVector<T> extends IfritVectorBase<T> {
 			r+=(double)Math.abs((double)i);
 		}
 		return r;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		//Object clone = super.clone();
+		return new ArrayList<>(vector);
 	}
 }

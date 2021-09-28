@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ifrit:jar">
+    <output-path>$PROJECT_DIR$/executable</output-path>
+    <root id="archive" name="ifrit.jar">
+      <element id="module-output" name="ifrit" />
+    </root>
+  </artifact>
+</component>

@@ -5,7 +5,7 @@ import java.util.*;
 import com.aeroraven.ifrit.exception.IfritCommandException;
 
 public class IfritCommandScheduler {
-	protected Queue<IfritCommandBase> cmdQueue;
+	protected final Queue<IfritCommandBase> cmdQueue;
 	public IfritCommandScheduler() {
 		cmdQueue = new LinkedList<IfritCommandBase>();
 	}

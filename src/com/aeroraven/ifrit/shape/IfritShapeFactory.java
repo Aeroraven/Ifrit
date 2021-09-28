@@ -2,6 +2,9 @@ package com.aeroraven.ifrit.shape;
 
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 
+/**
+ * @deprecated
+ */
 public class IfritShapeFactory {
 	IfritPrimitiveBase cache;
 	public IfritShapeFactoryImage imageBuilder() {

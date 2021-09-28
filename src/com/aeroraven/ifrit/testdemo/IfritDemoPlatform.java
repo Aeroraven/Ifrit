@@ -1,4 +1,4 @@
-package com.aeroraven.ifrit;
+package com.aeroraven.ifrit.testdemo;
 
 import com.aeroraven.ifrit.app.IfritApplication;
 import com.aeroraven.ifrit.command.IfritCPSwitchRenderScene;

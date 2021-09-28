@@ -5,12 +5,19 @@ import com.aeroraven.ifrit.core.*;
 import com.aeroraven.ifrit.constant.*;
 
 
-public abstract class IfritPrimitiveBase 
-implements IfritPrimitiveEventInterface, IfritPrimitiveGeometryInterface,Comparable<IfritPrimitiveBase> {
-	protected ArrayList<IfritVectord> pointlist;
-	protected String alias;
-	protected Boolean isFinal;
-	protected int zdepth;
+/**
+ * 图元基类
+ * 存储图元的顶点、深度等相关信息 <br/>
+ * 使用: 组合模式 Composite <br/>
+ * 支持: 原型模式 Prototype <br/>
+ * @author 1950641 hzw / Aeroraven
+ */
+public abstract class IfritPrimitiveBase
+implements IfritPrimitiveEventInterface, IfritPrimitiveGeometryInterface,Comparable<IfritPrimitiveBase>,Cloneable {
+	protected ArrayList<IfritVectord> pointlist=null;
+	protected String alias ="";
+	protected Boolean isFinal =false;
+	protected int zdepth = 0;
 	protected IfritRenderMode renderMode;
 	protected String dispChar = "  ";
 	
@@ -36,13 +43,27 @@ implements IfritPrimitiveEventInterface, IfritPrimitiveGeometryInterface,Compara
 	public abstract void setRenderMode(IfritRenderMode e);
 	
 	public int compareTo(IfritPrimitiveBase e) {
-		if(zdepth<e.zdepth) {
-			return -1;
-		}else if(zdepth==e.zdepth) {
-			return 0;
-		}else {
-			return 1;
+		return Integer.compare(zdepth, e.zdepth);
+	}
+
+	@Override
+	public IfritPrimitiveBase clone() {
+		try {
+			IfritPrimitiveBase clone = (IfritPrimitiveBase) super.clone();
+			clone.pointlist = new ArrayList<IfritVectord>();
+			if(pointlist!=null) {
+				for(IfritVectord i:pointlist) {
+					clone.pointlist.add(i.getDuplicate());
+				}
+			}
+			clone.alias = new String(alias);
+			clone.isFinal = (boolean) isFinal;
+			clone.zdepth = zdepth;
+			clone.renderMode = renderMode;
+			clone.dispChar = new String(dispChar);
+			return clone;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
 		}
 	}
-	
 }

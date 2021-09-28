@@ -1,5 +1,8 @@
 package com.aeroraven.ifrit.shape;
 
+/**
+ * @deprecated
+ */
 public class IfritShapeFactoryImage
 extends IfritShapeFactoryBase{
 	IfritShapeFactory parent;

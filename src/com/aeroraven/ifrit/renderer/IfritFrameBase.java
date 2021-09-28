@@ -34,8 +34,8 @@ abstract class IfritFrameBase {
 		}
 	}
 	public void initalize(int w,int h) {
-		setFrame(w,h);
-		if(initialized==false) {
+		if(!initialized) {
+			setFrame(w,h);
 			initialized=true;
 			for(int i=0;i<h;i++) {
 				for(int j=0;j<w;j++) {
@@ -48,6 +48,17 @@ abstract class IfritFrameBase {
 			}
 		}else {
 			clear();
+			setFrame(w,h);
+			if(pixels.size()<getIndex(h-1,w-1)) {
+				int diff = getIndex(h-1,w-1)-pixels.size();
+				for(int j=0;j<diff;j++) {
+					IfritPixel temp = new IfritPixel();
+					temp.setBgColor(com.aeroraven.ifrit.constant.IfritColor16.BLACK);
+					temp.setFgColor(com.aeroraven.ifrit.constant.IfritColor16.WHITE);
+					temp.setDispCh("  ");
+					pixels.add(temp);
+				}
+			}
 		}
 		
 	}

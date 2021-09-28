@@ -11,7 +11,7 @@ implements Runnable{
 	private static IfritThreadMediator instance;
 	private HashMap<String,IfritThreadBase> threadList;
 	private Thread notifierThread = null;
-	private Object waitLock = new Object();
+	private final Object waitLock = new Object();
 	
 	private IfritThreadMediator() {
 		super();

@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
+/**
+ * @deprecated Use Polygon Instead
+ */
 public final class IfritPrimitiveTriangle
-extends IfritPrimitiveBase{
+extends IfritPrimitiveBase
+implements Cloneable{
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	
@@ -149,5 +153,12 @@ extends IfritPrimitiveBase{
 			ret = Math.min(ret, i.get(1));
 		}
 		return ret;
+	}
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveTriangle clone = (IfritPrimitiveTriangle) super.clone();
+		clone.colvec4 = colvec4.getDuplicate();
+		clone.colvec4bg = colvec4.getDuplicate();
+		return clone;
 	}
 }

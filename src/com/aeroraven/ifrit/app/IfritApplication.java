@@ -38,9 +38,7 @@ public final class IfritApplication {
 	public void setTitle(String title) {
 		getEnv().getAPI().setConsoleTitle(title+" ");
 	}
-	private void adjustWindowSize() {
-		getEnv().getAPI().setWindowSize(getGlobal().getWindowHeight(), getGlobal().getWindowWidth());
-	}
+	private void adjustWindowSize() {getEnv().getAPI().setWindowSize(getGlobal().getWindowHeight(), getGlobal().getWindowWidth());}
 	public void addAudioFile(String fileName) {
 		getMediator().addCommand(new IfritCPAddAudio(fileName));
 	}

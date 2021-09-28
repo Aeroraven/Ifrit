@@ -5,7 +5,8 @@ import com.aeroraven.ifrit.constant.IfritRenderMode;
 import com.aeroraven.ifrit.core.IfritVectord;
 
 public final class IfritPrimitiveDot 
-extends IfritPrimitiveBase {
+extends IfritPrimitiveBase
+implements Cloneable{
 	private IfritVectord colvec4;
 	private IfritVectord colvec4bg;
 	public IfritPrimitiveDot() {
@@ -135,5 +136,12 @@ extends IfritPrimitiveBase {
 	@Override
 	public double getTopMargin() {
 		return pointlist.get(0).get(0);
+	}
+	@Override
+	public IfritPrimitiveBase clone() {
+		IfritPrimitiveDot clone = (IfritPrimitiveDot) super.clone();
+		clone.colvec4 = colvec4.getDuplicate();
+		clone.colvec4bg = colvec4.getDuplicate();
+		return clone;
 	}
 }

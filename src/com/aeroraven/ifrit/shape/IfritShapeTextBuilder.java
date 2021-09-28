@@ -5,6 +5,9 @@ import com.aeroraven.ifrit.primitive.*;
 import com.aeroraven.ifrit.core.*;
 import java.util.*;
 
+/**
+ * @deprecated
+ */
 class IfritShapeTextBuilder
 extends IfritShapeBuilderBase{
 	protected IfritPrimitiveCompound product;
