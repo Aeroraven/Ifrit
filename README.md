@@ -1,7 +1,7 @@
 ## Ifrit
 #### 介绍 
 
-一个Java实现的命令行绘图的工具。<s>Deals AOE Arts Damage in a long line</s>
+一个Java实现的命令行绘图和音频播放的工具。<s>Deals AOE Arts Damage in a long line</s>
 
 
 
@@ -43,19 +43,11 @@ IfritScene  scene = new IfritScene();
 
 <b>创建组件</b>
 
-组件(Component)是由一个或多个图形(Primitive)构成的具有统一功能的对象。图形的创建可以通过`IfritShapeFactory`类实例化的对象来产生。通过`IfritShapeFactory`生成的图形可以通过组件的`addPrimitive`方法添加到组件中。
+**!!! IfritShapeFactoryV2通过更加严格定义的工厂模式重构了IfritShapeFactory类, 原有IfritShapeFactory类已经标记弃用(DEPRECATED) !!!**
 
-```java
-IfritSprite sprite = new IfritSprite();
-IfritShapeFactory shapeFactory = new IfritShapeFactory();
+<S>组件(Component)是由一个或多个图形(Primitive)构成的具有统一功能的对象。图形的创建可以通过`IfritShapeFactory`类实例化的对象来产生。通过`IfritShapeFactory`生成的图形可以通过组件的`addPrimitive`方法添加到组件中。</s>
 
-shapeFactory.textBuilder()
-    .setBackColor(255, 0, 0)
-    .setForeColor(255,255, 255)
-    .createTextWithRectBorder("Button A", 0, 0, 12, 5, 0)
-    .store();
-sprite.addPrimitive(shapeFactory.getFinalShape(),0);	
-```
+
 
 <b>设置绘制场景</b>
 
@@ -67,24 +59,44 @@ app.setRenderScene(scene);
 
 
 
-#### 已经使用的设计模式
+#### 应用的设计模式
 
 - Singleton 单例模式
+
 - Bridge 桥接模式
+
 - Command 命令模式
+
 - Mediator 中介者模式
+
 - Factory Method 工厂方法
+
 - Template Method 模板方法
+
 - Composite 组合模式
+
 - Observer 观察者模式
+
+- Null Object 空对象模式
+
+- Event Queue 事件队列模式
+
+  
+
+#### 支持的设计模式
+
+- Prototype 原型模式
+- Interpreter 解释器模式
 
 
 
 #### 计划使用的设计模式
 
-- Null Object 空对象模式
+- Single Factory 简单工厂模式
 
+- State 状态模式
 
+  
 
 #### 可以使用的控件
 
@@ -130,12 +142,12 @@ app.setRenderScene(scene);
 
 ##### 文字图形
 
-- Text Builder / createTextWithRectBorder 带矩形背景的文本框，文字左上对齐
+- Text Builder / createTextWithRectBorder 带矩形背景的文本框，文字居中对齐（按钮样式）
 - Text Builder / createTextContainer 普通文字
 
 ##### 位图图形 
 
-- Image Builder / createImageContainer 绘制位图
+- <s>Image Builder / createImageContainer 绘制位图</s> (在IfritShapeFactoryV2中移除)
   - 不建议使用的选项（在Windows上为了获得最佳效果，请将字号设置为1，缓冲区设置尽量大）
 
 ##### 基本图形（按控制台像素光栅化后）
@@ -146,7 +158,9 @@ app.setRenderScene(scene);
 
 - Primitive Builder / createRound 绘制圆形（填充）
 
-- Primitive Builder / createTriangle 绘制三角形
+- <s> Primitive Builder / createTriangle 绘制三角形 </s> (在IfritShapeFactoryV2中移除)
+
+  - 使用IfritSFSolidPolygon类进行替代
 
 - Primitive Builder / createHollowPolygon 绘制空心多边形
 
