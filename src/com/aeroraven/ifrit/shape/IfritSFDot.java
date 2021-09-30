@@ -4,7 +4,6 @@ import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveCompound;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveDot;
-import com.aeroraven.ifrit.shape.IfritPrimitiveBuilder;
 
 import java.util.ArrayList;
 
