@@ -1,9 +1,8 @@
-package com.aeroraven.ifrit.shapefactory;
+package com.aeroraven.ifrit.shape;
 
 import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveCompound;
-import com.aeroraven.ifrit.primitive.IfritPrimitiveLine;
 import com.aeroraven.ifrit.primitive.IfritPrimitivePolygon;
 
 import java.util.ArrayList;

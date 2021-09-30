@@ -2,8 +2,8 @@ package com.aeroraven.ifrit.scene;
 
 import com.aeroraven.ifrit.component.IfritSprite;
 import com.aeroraven.ifrit.core.IfritVectord;
-import com.aeroraven.ifrit.shapefactory.IfritSFPlainText;
-import com.aeroraven.ifrit.shapefactory.IfritShapeFactoryV2;
+import com.aeroraven.ifrit.shape.IfritSFPlainText;
+import com.aeroraven.ifrit.shape.IfritShapeFactoryV2;
 
 import java.util.ArrayList;
 import java.util.List;

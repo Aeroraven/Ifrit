@@ -1,19 +1,18 @@
-package com.aeroraven.ifrit.shapefactory;
+package com.aeroraven.ifrit.shape;
 
 import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 import com.aeroraven.ifrit.primitive.IfritPrimitiveCompound;
-import com.aeroraven.ifrit.primitive.IfritPrimitiveLine;
+import com.aeroraven.ifrit.primitive.IfritPrimitivePolygon;
 
 import java.util.ArrayList;
-
 /**
- * 图形工厂类-空心多边形生成工厂<br/>
+ * 图形工厂类-实心多边形生成工厂<br/>
  * 使用: 工厂模式 Factory Method<br/>
  * @author 1950641 hzw / Aeroraven
  */
-public class IfritSFHollowPolygon
-extends  IfritShapeFactoryV2{
+public class IfritSFSolidPolygon
+extends IfritShapeFactoryV2{
     /**
      * 创建复合图形
      *
@@ -29,16 +28,16 @@ extends  IfritShapeFactoryV2{
     @Override
     public IfritPrimitiveBase create(IfritVectord fg, IfritVectord bg, String fillChar, int zdepth, ArrayList<IfritVectord> vertices, ArrayList<Double> scalars, ArrayList<String> strings) {
         IfritPrimitiveCompound product = new IfritPrimitiveCompound();
+        IfritPrimitivePolygon tmp = new IfritPrimitivePolygon();
+        tmp.setZDepth(zdepth);
+        tmp.setDisplayChar(fillChar);
+        tmp.setForeColor4d(fg.getDuplicate());
+        tmp.setBackColor4d(bg.getDuplicate());
         for(int i=0;i<vertices.size();i++) {
             IfritVectord st=vertices.get(i).getDuplicate();
-            IfritVectord ed=vertices.get((i+1)%vertices.size()).getDuplicate();
-            IfritPrimitiveLine subtmp = new IfritPrimitiveLine(st.get(0),st.get(1),ed.get(0),ed.get(1));
-            subtmp.setZDepth(zdepth);
-            subtmp.setDisplayChar(fillChar);
-            subtmp.setForeColor4d(fg.getDuplicate());
-            subtmp.setBackColor4d(bg.getDuplicate());
-            product.add(subtmp);
+            tmp.addVertex(st);
         }
+        product.add(tmp);
         product.setZDepth(zdepth);
         cache = product;
         return product;
