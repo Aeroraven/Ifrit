@@ -14,7 +14,7 @@ import java.util.List;
  * @author 1950641 hzw / Aeroraven
  */
 public class IfritSFBoxWrappedText
-extends IfritShapeFactoryV2{
+extends IfritShapeFactory {
 
     /**
      * 创建复合图形
@@ -62,7 +62,7 @@ extends IfritShapeFactoryV2{
         int offsetY= (int)vertices.get(0).Y();
         int wordX=(w/2-pixelsLen/2)+offsetX;
         int wordY=h/2+offsetY;
-        IfritShapeFactoryV2 textFactory = new IfritSFPlainText();
+        IfritShapeFactory textFactory = new IfritSFPlainText();
         textFactory.create(fg,bg,fillChar,zdepth,
                 new ArrayList<IfritVectord>(List.of(IfritVectord.val((double) wordX, (double) wordY))),
                 null,
@@ -95,7 +95,7 @@ extends IfritShapeFactoryV2{
         product.add(textFactory.getStoreClone());
 
         //LR Border
-        IfritShapeFactoryV2 dotFactory = new IfritSFDot();
+        IfritShapeFactory dotFactory = new IfritSFDot();
         for(int i=offsetY+1;i<offsetY+h-1;i++) {
             dotFactory.reset();
             dotFactory.create(fg,bg,"| ",zdepth,

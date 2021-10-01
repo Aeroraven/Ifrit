@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author 1950641 hzw / Aeroraven
  */
 public class IfritSFSolidPolygon
-extends IfritShapeFactoryV2{
+extends IfritShapeFactory {
     /**
      * 创建复合图形
      *

@@ -3,7 +3,7 @@ package com.aeroraven.ifrit.scene;
 import com.aeroraven.ifrit.component.IfritSprite;
 import com.aeroraven.ifrit.core.IfritVectord;
 import com.aeroraven.ifrit.shape.IfritSFPlainText;
-import com.aeroraven.ifrit.shape.IfritShapeFactoryV2;
+import com.aeroraven.ifrit.shape.IfritShapeFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ extends IfritScene{
     public IfritNullScene() {
         setSceneSize(100,100);
         IfritSprite nullTip = new IfritSprite();
-        IfritShapeFactoryV2 txtFactory = new IfritSFPlainText();
+        IfritShapeFactory txtFactory = new IfritSFPlainText();
         txtFactory.create(
                 IfritVectord.val(0.,0.,0.,0.),
                 IfritVectord.val(255.,255.,255.,0.),
@@ -29,6 +29,5 @@ extends IfritScene{
                 new ArrayList<String>(List.of("This is the default scene of Ifrit Application!\n Begin with creating your customzied scene")));
         nullTip.addPrimitive(txtFactory.getStoreRef());
         addComponent("default",nullTip);
-        System.out.println("RENDERED");
     }
 }

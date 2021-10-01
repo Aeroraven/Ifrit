@@ -6,12 +6,12 @@ import com.aeroraven.ifrit.primitive.IfritPrimitiveBase;
 import java.util.ArrayList;
 
 /**
- *  复合图形的工厂基类 <br/>
- *  使用更加严格的工厂模式定义重写原有的IfritShapeFactory<br/>
+ *  基本图元的工厂基类 <br/>
+ *  使用更加严格的工厂模式定义重写原有的IfritShapeFactory（重构前的类已经废弃）<br/>
  *  使用: 工厂模式 Factory Method<br/>
  * @author 1950641 hzw / Aeroraven
  */
-public abstract class IfritShapeFactoryV2 {
+public abstract class IfritShapeFactory {
     protected IfritPrimitiveBase cache;
 
     /**
